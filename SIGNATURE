@@ -1,0 +1,38 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.55.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 262663eff689757c64fe6ecdd83673c9e85217e3 Build.PL
+SHA1 262f3ea206d6e0bd402f03773b47f1b8dbf6d5f7 Changes
+SHA1 a4bb689b9b0fd4142d35702f031eb23ed422061f MANIFEST
+SHA1 c91469cbcf109a44e56411acf3c55d2b089cd9ee META.yml
+SHA1 f864aca65b3f88696c460a1b3297585b04b5ca2e README
+SHA1 a3b2e4c4dc1be13b3715fabba8562b2151f10295 TestSuite.pm
+SHA1 5e8bc6da10ec2448fad9eb883ca1f41a5fa8c430 lib/Regexp/Common/debian.pm
+SHA1 ef98d8ed6b32447148c2602bccaeccd903aa1f26 t/architecture.t
+SHA1 d1344ab276c366f97b351ded739fb336c5ed7223 t/architecture.yaml
+SHA1 d69f531f77743aa6d6c10d1683ebeb646ad7a960 t/archive.t
+SHA1 a69d38d060909639040d4e788bb75a25e2ec0d1e t/archive.yaml
+SHA1 21e428f1a8ea84ec39bfee2f91913dbcbcdce4c1 t/package.t
+SHA1 59eebcc9a711b1b4751aa54aaf9bb297c71c8d6a t/package.yaml
+SHA1 64d9077a95376a9599133122f607f7a3e1c46c6a t/version.t
+SHA1 e2083dc8e9affc038cd705269f2d394e00411601 t/version.yaml
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (GNU/Linux)
+
+iD8DBQFJW00a1qsM9O+FbKQRAoZQAKC4mr4j3OWlyXVfoIODNRNRKq+ojQCdE6oS
+kLMUiY5zrikP3ZzP0Qlfmpk=
+=f/II
+-----END PGP SIGNATURE-----

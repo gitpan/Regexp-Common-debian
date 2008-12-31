@@ -1,0 +1,1274 @@
+---
+match_binary:
+  -
+    - a0_1_all.deb
+    - +
+    - a0_1_all.deb
+    - a0
+    - 1
+    - all
+  -
+    - abcdefghijklmnopqrstuvwxyz_1_all.deb
+    - +
+    - abcdefghijklmnopqrstuvwxyz_1_all.deb
+    - abcdefghijklmnopqrstuvwxyz
+    - 1
+    - all
+  -
+    - 0123456789_1_all.deb
+    - +
+    - 0123456789_1_all.deb
+    - 0123456789
+    - 1
+    - all
+  -
+    - a-0_1_all.deb
+    - +
+    - a-0_1_all.deb
+    - a-0
+    - 1
+    - all
+  -
+    - a+0_1_all.deb
+    - +
+    - a+0_1_all.deb
+    - a+0
+    - 1
+    - all
+  -
+    - a.0_1_all.deb
+    - +
+    - a.0_1_all.deb
+    - a.0
+    - 1
+    - all
+  -
+    - a0_0123456789_all.deb
+    - +
+    - a0_0123456789_all.deb
+    - a0
+    - 0123456789
+    - all
+  -
+    - a0_0abcdefghijklmnopqrstuvwxyz_all.deb
+    - +
+    - a0_0abcdefghijklmnopqrstuvwxyz_all.deb
+    - a0
+    - 0abcdefghijklmnopqrstuvwxyz
+    - all
+  -
+    - a0_0%3a0a_all.deb
+    - +
+    - a0_0%3a0a_all.deb
+    - a0
+    - 0%3a0a
+    - all
+  -
+    - a0_0~a_all.deb
+    - +
+    - a0_0~a_all.deb
+    - a0
+    - 0~a
+    - all
+  -
+    - a0_0-a_all.deb
+    - +
+    - a0_0-a_all.deb
+    - a0
+    - 0-a
+    - all
+  -
+    - deb_0_all.deb
+    - +
+    - deb_0_all.deb
+    - deb
+    - 0
+    - all
+  -
+    - a.deb_0_all.deb
+    - +
+    - a.deb_0_all.deb
+    - a.deb
+    - 0
+    - all
+  -
+    - alpha_0_all.deb
+    - +
+    - alpha_0_all.deb
+    - alpha
+    - 0
+    - all
+  -
+    - darwin-alpha_0_all.deb
+    - +
+    - darwin-alpha_0_all.deb
+    - darwin-alpha
+    - 0
+    - all
+  -
+    - a0_0.deb_all.deb
+    - +
+    - a0_0.deb_all.deb
+    - a0
+    - 0.deb
+    - all
+  -
+    - a0_0.amd64_all.deb
+    - +
+    - a0_0.amd64_all.deb
+    - a0
+    - 0.amd64
+    - all
+  -
+    - a0_0.freebsd-amd64_all.deb
+    - +
+    - a0_0.freebsd-amd64_all.deb
+    - a0
+    - 0.freebsd-amd64
+    - all
+  -
+    - a0_0_all.deb
+    - +
+    - a0_0_all.deb
+    - a0
+    - 0
+    - all
+  -
+    - a0_0_any.deb
+    - +
+    - a0_0_any.deb
+    - a0
+    - 0
+    - any
+  -
+    - a0_0_source.deb
+    - +
+    - a0_0_source.deb
+    - a0
+    - 0
+    - source
+  -
+    - a0_0_armeb.deb
+    - +
+    - a0_0_armeb.deb
+    - a0
+    - 0
+    - armeb
+  -
+    - a0_0_hurd-armeb.deb
+    - +
+    - a0_0_hurd-armeb.deb
+    - a0
+    - 0
+    - hurd-armeb
+  -
+    - a0_0_lpia.deb
+    - +
+    - a0_0_lpia.deb
+    - a0
+    - 0
+    - lpia
+  -
+    - a0_0_kfreebsd-lpia.deb
+    - +
+    - a0_0_kfreebsd-lpia.deb
+    - a0
+    - 0
+    - kfreebsd-lpia
+  -
+    - 
+    - -
+  -
+    - a0
+    - -
+  -
+    - a0_1
+    - -
+  -
+    - a0_1_all
+    - -
+  -
+    - a0_1_all.
+    - -
+  -
+    - a0_1_allxdeb
+    - -
+  -
+    - '!@#$a0_0_all.deb'
+    - -
+    - a0_0_all.deb
+    - a0
+    - 0
+    - all
+  -
+    - a0_0_all.debabcd
+    - -
+  -
+    - a0_1_all.deb.deb
+    - -
+  -
+    - a_1_all.deb
+    - -
+  -
+    - _1_all.deb
+    - -
+  -
+    - __all.deb
+    - -
+  -
+    - __.deb
+    - -
+  -
+    - a0__all.deb
+    - -
+  -
+    - a0_1_.deb
+    - -
+  -
+    - a1__.deb
+    - -
+  -
+    - a:0_0_all.deb
+    - -
+  -
+    - a0_:0a_all.deb
+    - -
+  -
+    - a0_0:a_all.deb
+    - -
+  -
+    - a0_0:0a_all.deb
+    - -
+  -
+    - a0_0a:_all.deb
+    - -
+  -
+    - %3Da_1_all.deb
+    - -
+  -
+    - a0_a_all.deb
+    - -
+  -
+    - a0_%3D_all.deb
+    - -
+  -
+    - a0_1_3141.deb
+    - -
+match_source:
+  -
+    - 
+    - -
+  -
+    - tar.gz
+    - -
+  -
+    - orig.tar.gz
+    - -
+  -
+    - 0.tar.gz
+    - -
+  -
+    - 0.orig.tar.gz
+    - -
+  -
+    - _0.tar.gz
+    - -
+  -
+    - a0_0.tar.gz
+    - +
+    - a0_0.tar.gz
+    - a0
+    - 0
+    - tar
+  -
+    - a0_0.tar.gzfoo.bar
+    - -
+  -
+    - _a0_0.tar.gz
+    - -
+    - a0_0.tar.gz
+    - a0
+    - 0
+    - tar
+  -
+    - a0_0.tgz
+    - -
+  -
+    - a0_0-tar.gz
+    - -
+  -
+    - a0_0_tar.gz
+    - -
+  -
+    - a0_0.orig.tar.gz
+    - +
+    - a0_0.orig.tar.gz
+    - a0
+    - 0
+    - orig.tar
+  -
+    - a0_0.orig.tar.gzfoo.bar
+    - -
+  -
+    - _a0_0.orig.tar.gz
+    - -
+    - a0_0.orig.tar.gz
+    - a0
+    - 0
+    - orig.tar
+  -
+    - a0_0-orig.tar.gz
+    - +
+    - a0_0-orig.tar.gz
+    - a0
+    - 0-orig
+    - tar
+  -
+    - a0_0.orig.tgz
+    - -
+  -
+    - a0_0.gz.tar.gz
+    - +
+    - a0_0.gz.tar.gz
+    - a0
+    - 0.gz
+    - tar
+  -
+    - a0_0.tar.gz.tar.gz
+    - +
+    - a0_0.tar.gz.tar.gz
+    - a0
+    - 0.tar.gz
+    - tar
+  -
+    - a0_0.gz.orig.tar.gz
+    - +
+    - a0_0.gz.orig.tar.gz
+    - a0
+    - 0.gz
+    - orig.tar
+  -
+    - a0_0.tar.gz.orig.tar.gz
+    - +
+    - a0_0.tar.gz.orig.tar.gz
+    - a0
+    - 0.tar.gz
+    - orig.tar
+  -
+    - a0_0.orig.tar.gz.tar.gz
+    - +
+    - a0_0.orig.tar.gz.tar.gz
+    - a0
+    - 0.orig.tar.gz
+    - tar
+  -
+    - a0_0.orig.tar.gz.orig.tar.gz
+    - +
+    - a0_0.orig.tar.gz.orig.tar.gz
+    - a0
+    - 0.orig.tar.gz
+    - orig.tar
+  -
+    - a0_0.orig.tar.gz.orig.tar.gz.orig.tar.gz
+    - +
+    - a0_0.orig.tar.gz.orig.tar.gz.orig.tar.gz
+    - a0
+    - 0.orig.tar.gz.orig.tar.gz
+    - orig.tar
+  -
+    - a0_0:1.tar.gz
+    - -
+  -
+    - a0_0%1.tar.gz
+    - -
+  -
+    - a0_0%3a1.tar.gz
+    - -
+  -
+    - a0_0123456789.tar.gz
+    - +
+    - a0_0123456789.tar.gz
+    - a0
+    - 0123456789
+    - tar
+  -
+    - a0_0abcdefghijklmnopqrstuvwxyz.tar.gz
+    - +
+    - a0_0abcdefghijklmnopqrstuvwxyz.tar.gz
+    - a0
+    - 0abcdefghijklmnopqrstuvwxyz
+    - tar
+  -
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ.tar.gz
+    - +
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ.tar.gz
+    - a0
+    - 0ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    - tar
+  -
+    - a0_0-1.tar.gz
+    - +
+    - a0_0-1.tar.gz
+    - a0
+    - 0-1
+    - tar
+  -
+    - a0_0~1.tar.gz
+    - +
+    - a0_0~1.tar.gz
+    - a0
+    - 0~1
+    - tar
+  -
+    - a0_0.1.tar.gz
+    - +
+    - a0_0.1.tar.gz
+    - a0
+    - 0.1
+    - tar
+  -
+    - a0_0+1.tar.gz
+    - +
+    - a0_0+1.tar.gz
+    - a0
+    - 0+1
+    - tar
+  -
+    - a_0.tar.gz
+    - -
+  -
+    - abcdefghijklmnopqrstuvwxyz_0.tar.gz
+    - +
+    - abcdefghijklmnopqrstuvwxyz_0.tar.gz
+    - abcdefghijklmnopqrstuvwxyz
+    - 0
+    - tar
+  -
+    - 0123456789_0.tar.gz
+    - +
+    - 0123456789_0.tar.gz
+    - 0123456789
+    - 0
+    - tar
+  -
+    - a-0_0.tar.gz
+    - +
+    - a-0_0.tar.gz
+    - a-0
+    - 0
+    - tar
+  -
+    - a-_0.tar.gz
+    - +
+    - a-_0.tar.gz
+    - a-
+    - 0
+    - tar
+  -
+    - a+0_0.tar.gz
+    - +
+    - a+0_0.tar.gz
+    - a+0
+    - 0
+    - tar
+  -
+    - a+_0.tar.gz
+    - +
+    - a+_0.tar.gz
+    - a+
+    - 0
+    - tar
+  -
+    - a.0_0.tar.gz
+    - +
+    - a.0_0.tar.gz
+    - a.0
+    - 0
+    - tar
+  -
+    - a._0.tar.gz
+    - +
+    - a._0.tar.gz
+    - a.
+    - 0
+    - tar
+match_patch:
+  -
+    - 
+    - -
+  -
+    - diff.gz
+    - -
+  -
+    - 0.diff.gz
+    - -
+  -
+    - 0-1.diff.gz
+    - -
+  -
+    - _0.diff.gz
+    - -
+  -
+    - _0-1.diff.gz
+    - -
+  -
+    - a0_0-1.diff.gz
+    - +
+    - a0_0-1.diff.gz
+    - a0
+    - 0-1
+  -
+    - a0_0.diff.gz
+    - +
+    - a0_0.diff.gz
+    - a0
+    - 0
+  -
+    - a0_0.diff.gzfoo.bar
+    - -
+  -
+    - _a0_0.diff.gz
+    - -
+    - a0_0.diff.gz
+    - a0
+    - 0
+  -
+    - a0_0-diff.gz
+    - -
+  -
+    - a0_0_diff.gz
+    - -
+  -
+    - a0_0-1_diff.gz
+    - -
+  -
+    - a0_0-1.gz.diff.gz
+    - +
+    - a0_0-1.gz.diff.gz
+    - a0
+    - 0-1.gz
+  -
+    - a0_0.gz.diff.gz
+    - +
+    - a0_0.gz.diff.gz
+    - a0
+    - 0.gz
+  -
+    - a0_0-1.diff.gz.diff.gz
+    - +
+    - a0_0-1.diff.gz.diff.gz
+    - a0
+    - 0-1.diff.gz
+  -
+    - a0_0.diff.gz.diff.gz
+    - +
+    - a0_0.diff.gz.diff.gz
+    - a0
+    - 0.diff.gz
+  -
+    - a0_0-1.diff.gz.diff.gz.diff.gz
+    - +
+    - a0_0-1.diff.gz.diff.gz.diff.gz
+    - a0
+    - 0-1.diff.gz.diff.gz
+  -
+    - a0_0.diff.gz.diff.gz.diff.gz
+    - +
+    - a0_0.diff.gz.diff.gz.diff.gz
+    - a0
+    - 0.diff.gz.diff.gz
+  -
+    - a0_0:1.diff.gz
+    - -
+  -
+    - a0_0%1.diff.gz
+    - -
+  -
+    - a0_0%3a1.diff.gz
+    - -
+  -
+    - a0_0123456789-1.diff.gz
+    - +
+    - a0_0123456789-1.diff.gz
+    - a0
+    - 0123456789-1
+  -
+    - a0_0123456789.diff.gz
+    - +
+    - a0_0123456789.diff.gz
+    - a0
+    - 0123456789
+  -
+    - a0_0abcdefghijklmnopqrstuvwxyz-1.diff.gz
+    - +
+    - a0_0abcdefghijklmnopqrstuvwxyz-1.diff.gz
+    - a0
+    - 0abcdefghijklmnopqrstuvwxyz-1
+  -
+    - a0_0abcdefghijklmnopqrstuvwxyz.diff.gz
+    - +
+    - a0_0abcdefghijklmnopqrstuvwxyz.diff.gz
+    - a0
+    - 0abcdefghijklmnopqrstuvwxyz
+  -
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1.diff.gz
+    - +
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1.diff.gz
+    - a0
+    - 0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1
+  -
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ.diff.gz
+    - +
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ.diff.gz
+    - a0
+    - 0ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  -
+    - a0_0~1-2.diff.gz
+    - +
+    - a0_0~1-2.diff.gz
+    - a0
+    - 0~1-2
+  -
+    - a0_0~1.diff.gz
+    - +
+    - a0_0~1.diff.gz
+    - a0
+    - 0~1
+  -
+    - a0_0.1-2.diff.gz
+    - +
+    - a0_0.1-2.diff.gz
+    - a0
+    - 0.1-2
+  -
+    - a0_0.1.diff.gz
+    - +
+    - a0_0.1.diff.gz
+    - a0
+    - 0.1
+  -
+    - a0_0+1-2.diff.gz
+    - +
+    - a0_0+1-2.diff.gz
+    - a0
+    - 0+1-2
+  -
+    - a0_0+1.diff.gz
+    - +
+    - a0_0+1.diff.gz
+    - a0
+    - 0+1
+  -
+    - a_0-1.diff.gz
+    - -
+  -
+    - a_0.diff.gz
+    - -
+  -
+    - abcdefghijklmnopqrstuvwxyz_0-1.diff.gz
+    - +
+    - abcdefghijklmnopqrstuvwxyz_0-1.diff.gz
+    - abcdefghijklmnopqrstuvwxyz
+    - 0-1
+  -
+    - abcdefghijklmnopqrstuvwxyz_0.diff.gz
+    - +
+    - abcdefghijklmnopqrstuvwxyz_0.diff.gz
+    - abcdefghijklmnopqrstuvwxyz
+    - 0
+  -
+    - 0123456789_0-1.diff.gz
+    - +
+    - 0123456789_0-1.diff.gz
+    - 0123456789
+    - 0-1
+  -
+    - 0123456789_0.diff.gz
+    - +
+    - 0123456789_0.diff.gz
+    - 0123456789
+    - 0
+  -
+    - a-0_0-1.diff.gz
+    - +
+    - a-0_0-1.diff.gz
+    - a-0
+    - 0-1
+  -
+    - a-0_0.diff.gz
+    - +
+    - a-0_0.diff.gz
+    - a-0
+    - 0
+  -
+    - a-_0-1.diff.gz
+    - +
+    - a-_0-1.diff.gz
+    - a-
+    - 0-1
+  -
+    - a-_0.diff.gz
+    - +
+    - a-_0.diff.gz
+    - a-
+    - 0
+  -
+    - a+0_0-1.diff.gz
+    - +
+    - a+0_0-1.diff.gz
+    - a+0
+    - 0-1
+  -
+    - a+0_0.diff.gz
+    - +
+    - a+0_0.diff.gz
+    - a+0
+    - 0
+  -
+    - a+_0-1.diff.gz
+    - +
+    - a+_0-1.diff.gz
+    - a+
+    - 0-1
+  -
+    - a+_0.diff.gz
+    - +
+    - a+_0.diff.gz
+    - a+
+    - 0
+  -
+    - a.0_1-2.diff.gz
+    - +
+    - a.0_1-2.diff.gz
+    - a.0
+    - 1-2
+  -
+    - a.0_1.diff.gz
+    - +
+    - a.0_1.diff.gz
+    - a.0
+    - 1
+  -
+    - a._0-1.diff.gz
+    - +
+    - a._0-1.diff.gz
+    - a.
+    - 0-1
+  -
+    - a._0.diff.gz
+    - +
+    - a._0.diff.gz
+    - a.
+    - 0
+match_dsc:
+  -
+    - 
+    - -
+  -
+    - dsc
+    - -
+  -
+    - 0.dsc
+    - -
+  -
+    - 0-1.dsc
+    - -
+  -
+    - _0.dsc
+    - -
+  -
+    - _0-1.dsc
+    - -
+  -
+    - a0_0-1.dsc
+    - +
+    - a0_0-1.dsc
+    - a0
+    - 0-1
+  -
+    - a0_0.dsc
+    - +
+    - a0_0.dsc
+    - a0
+    - 0
+  -
+    - a0_0.dscfoo.bar
+    - -
+  -
+    - _a0_0.dsc
+    - -
+    - a0_0.dsc
+    - a0
+    - 0
+  -
+    - a0_0-dsc
+    - -
+  -
+    - a0_0_dsc
+    - -
+  -
+    - a0_0-1_dsc
+    - -
+  -
+    - a0_0-1.dsc.dsc
+    - +
+    - a0_0-1.dsc.dsc
+    - a0
+    - 0-1.dsc
+  -
+    - a0_0.dsc.dsc
+    - +
+    - a0_0.dsc.dsc
+    - a0
+    - 0.dsc
+  -
+    - a0_0-1.dsc.dsc.dsc
+    - +
+    - a0_0-1.dsc.dsc.dsc
+    - a0
+    - 0-1.dsc.dsc
+  -
+    - a0_0.dsc.dsc.dsc
+    - +
+    - a0_0.dsc.dsc.dsc
+    - a0
+    - 0.dsc.dsc
+  -
+    - a0_0:1.dsc
+    - -
+  -
+    - a0_0%1.dsc
+    - -
+  -
+    - a0_0%3a1.dsc
+    - -
+  -
+    - a0_0123456789-1.dsc
+    - +
+    - a0_0123456789-1.dsc
+    - a0
+    - 0123456789-1
+  -
+    - a0_0123456789.dsc
+    - +
+    - a0_0123456789.dsc
+    - a0
+    - 0123456789
+  -
+    - a0_0abcdefghijklmnopqrstuvwxyz-1.dsc
+    - +
+    - a0_0abcdefghijklmnopqrstuvwxyz-1.dsc
+    - a0
+    - 0abcdefghijklmnopqrstuvwxyz-1
+  -
+    - a0_0abcdefghijklmnopqrstuvwxyz.dsc
+    - +
+    - a0_0abcdefghijklmnopqrstuvwxyz.dsc
+    - a0
+    - 0abcdefghijklmnopqrstuvwxyz
+  -
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1.dsc
+    - +
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1.dsc
+    - a0
+    - 0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1
+  -
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ.dsc
+    - +
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ.dsc
+    - a0
+    - 0ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  -
+    - a0_0~1-2.dsc
+    - +
+    - a0_0~1-2.dsc
+    - a0
+    - 0~1-2
+  -
+    - a0_0~1.dsc
+    - +
+    - a0_0~1.dsc
+    - a0
+    - 0~1
+  -
+    - a0_0.1-2.dsc
+    - +
+    - a0_0.1-2.dsc
+    - a0
+    - 0.1-2
+  -
+    - a0_0.1.dsc
+    - +
+    - a0_0.1.dsc
+    - a0
+    - 0.1
+  -
+    - a0_0+1-2.dsc
+    - +
+    - a0_0+1-2.dsc
+    - a0
+    - 0+1-2
+  -
+    - a0_0+1.dsc
+    - +
+    - a0_0+1.dsc
+    - a0
+    - 0+1
+  -
+    - a_0-1.dsc
+    - -
+  -
+    - a_0.dsc
+    - -
+  -
+    - abcdefghijklmnopqrstuvwxyz_0-1.dsc
+    - +
+    - abcdefghijklmnopqrstuvwxyz_0-1.dsc
+    - abcdefghijklmnopqrstuvwxyz
+    - 0-1
+  -
+    - abcdefghijklmnopqrstuvwxyz_0.dsc
+    - +
+    - abcdefghijklmnopqrstuvwxyz_0.dsc
+    - abcdefghijklmnopqrstuvwxyz
+    - 0
+  -
+    - 0123456789_0-1.dsc
+    - +
+    - 0123456789_0-1.dsc
+    - 0123456789
+    - 0-1
+  -
+    - 0123456789_0.dsc
+    - +
+    - 0123456789_0.dsc
+    - 0123456789
+    - 0
+  -
+    - a-0_0-1.dsc
+    - +
+    - a-0_0-1.dsc
+    - a-0
+    - 0-1
+  -
+    - a-0_0.dsc
+    - +
+    - a-0_0.dsc
+    - a-0
+    - 0
+  -
+    - a-_0-1.dsc
+    - +
+    - a-_0-1.dsc
+    - a-
+    - 0-1
+  -
+    - a-_0.dsc
+    - +
+    - a-_0.dsc
+    - a-
+    - 0
+  -
+    - a+0_0-1.dsc
+    - +
+    - a+0_0-1.dsc
+    - a+0
+    - 0-1
+  -
+    - a+0_0.dsc
+    - +
+    - a+0_0.dsc
+    - a+0
+    - 0
+  -
+    - a+_0-1.dsc
+    - +
+    - a+_0-1.dsc
+    - a+
+    - 0-1
+  -
+    - a+_0.dsc
+    - +
+    - a+_0.dsc
+    - a+
+    - 0
+  -
+    - a.0_1-2.dsc
+    - +
+    - a.0_1-2.dsc
+    - a.0
+    - 1-2
+  -
+    - a.0_1.dsc
+    - +
+    - a.0_1.dsc
+    - a.0
+    - 1
+  -
+    - a._0-1.dsc
+    - +
+    - a._0-1.dsc
+    - a.
+    - 0-1
+  -
+    - a._0.dsc
+    - +
+    - a._0.dsc
+    - a.
+    - 0
+match_changes:
+  -
+    - 
+    - -
+  -
+    - changes
+    - -
+  -
+    - 0.changes
+    - -
+  -
+    - 0-1.changes
+    - -
+  -
+    - _0.changes
+    - -
+  -
+    - _0-1.changes
+    - -
+  -
+    - a0_0-1.changes
+    - +
+    - a0_0-1.changes
+    - a0
+    - 0-1
+  -
+    - a0_0.changes
+    - +
+    - a0_0.changes
+    - a0
+    - 0
+  -
+    - a0_0.changesfoo.bar
+    - -
+  -
+    - _a0_0.changes
+    - -
+    - a0_0.changes
+    - a0
+    - 0
+  -
+    - a0_0-changes
+    - -
+  -
+    - a0_0_changes
+    - -
+  -
+    - a0_0-1_changes
+    - -
+  -
+    - a0_0-1.changes.changes
+    - +
+    - a0_0-1.changes.changes
+    - a0
+    - 0-1.changes
+  -
+    - a0_0.changes.changes
+    - +
+    - a0_0.changes.changes
+    - a0
+    - 0.changes
+  -
+    - a0_0-1.changes.changes.changes
+    - +
+    - a0_0-1.changes.changes.changes
+    - a0
+    - 0-1.changes.changes
+  -
+    - a0_0.changes.changes.changes
+    - +
+    - a0_0.changes.changes.changes
+    - a0
+    - 0.changes.changes
+  -
+    - a0_0:1.changes
+    - -
+  -
+    - a0_0%1.changes
+    - -
+  -
+    - a0_0%3a1.changes
+    - -
+  -
+    - a0_0123456789-1.changes
+    - +
+    - a0_0123456789-1.changes
+    - a0
+    - 0123456789-1
+  -
+    - a0_0123456789.changes
+    - +
+    - a0_0123456789.changes
+    - a0
+    - 0123456789
+  -
+    - a0_0abcdefghijklmnopqrstuvwxyz-1.changes
+    - +
+    - a0_0abcdefghijklmnopqrstuvwxyz-1.changes
+    - a0
+    - 0abcdefghijklmnopqrstuvwxyz-1
+  -
+    - a0_0abcdefghijklmnopqrstuvwxyz.changes
+    - +
+    - a0_0abcdefghijklmnopqrstuvwxyz.changes
+    - a0
+    - 0abcdefghijklmnopqrstuvwxyz
+  -
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1.changes
+    - +
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1.changes
+    - a0
+    - 0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1
+  -
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ.changes
+    - +
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ.changes
+    - a0
+    - 0ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  -
+    - a0_0~1-2.changes
+    - +
+    - a0_0~1-2.changes
+    - a0
+    - 0~1-2
+  -
+    - a0_0~1.changes
+    - +
+    - a0_0~1.changes
+    - a0
+    - 0~1
+  -
+    - a0_0.1-2.changes
+    - +
+    - a0_0.1-2.changes
+    - a0
+    - 0.1-2
+  -
+    - a0_0.1.changes
+    - +
+    - a0_0.1.changes
+    - a0
+    - 0.1
+  -
+    - a0_0+1-2.changes
+    - +
+    - a0_0+1-2.changes
+    - a0
+    - 0+1-2
+  -
+    - a0_0+1.changes
+    - +
+    - a0_0+1.changes
+    - a0
+    - 0+1
+  -
+    - a_0-1.changes
+    - -
+  -
+    - a_0.changes
+    - -
+  -
+    - abcdefghijklmnopqrstuvwxyz_0-1.changes
+    - +
+    - abcdefghijklmnopqrstuvwxyz_0-1.changes
+    - abcdefghijklmnopqrstuvwxyz
+    - 0-1
+  -
+    - abcdefghijklmnopqrstuvwxyz_0.changes
+    - +
+    - abcdefghijklmnopqrstuvwxyz_0.changes
+    - abcdefghijklmnopqrstuvwxyz
+    - 0
+  -
+    - 0123456789_0-1.changes
+    - +
+    - 0123456789_0-1.changes
+    - 0123456789
+    - 0-1
+  -
+    - 0123456789_0.changes
+    - +
+    - 0123456789_0.changes
+    - 0123456789
+    - 0
+  -
+    - a-0_0-1.changes
+    - +
+    - a-0_0-1.changes
+    - a-0
+    - 0-1
+  -
+    - a-0_0.changes
+    - +
+    - a-0_0.changes
+    - a-0
+    - 0
+  -
+    - a-_0-1.changes
+    - +
+    - a-_0-1.changes
+    - a-
+    - 0-1
+  -
+    - a-_0.changes
+    - +
+    - a-_0.changes
+    - a-
+    - 0
+  -
+    - a+0_0-1.changes
+    - +
+    - a+0_0-1.changes
+    - a+0
+    - 0-1
+  -
+    - a+0_0.changes
+    - +
+    - a+0_0.changes
+    - a+0
+    - 0
+  -
+    - a+_0-1.changes
+    - +
+    - a+_0-1.changes
+    - a+
+    - 0-1
+  -
+    - a+_0.changes
+    - +
+    - a+_0.changes
+    - a+
+    - 0
+  -
+    - a.0_1-2.changes
+    - +
+    - a.0_1-2.changes
+    - a.0
+    - 1-2
+  -
+    - a.0_1.changes
+    - +
+    - a.0_1.changes
+    - a.0
+    - 1
+  -
+    - a._0-1.changes
+    - +
+    - a._0-1.changes
+    - a.
+    - 0-1
+  -
+    - a._0.changes
+    - +
+    - a._0.changes
+    - a.
+    - 0

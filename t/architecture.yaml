@@ -1,0 +1,90 @@
+---
+match_architecture:
+  -
+    - all
+    - +
+    - all
+    - all
+    - ~
+    - ~
+  -
+    - source
+    - +
+    - source
+    - source
+    - ~
+    - ~
+  -
+    - any
+    - +
+    - any
+    - any
+    - ~
+    - ~
+  -
+    - amd64
+    - +
+    - amd64
+    - ~
+    - ~
+    - amd64
+  -
+    - hurd-hppa
+    - +
+    - hurd-hppa
+    - ~
+    - hurd
+    - hppa
+  -
+    - 
+    - -
+  -
+    - a0
+    - -
+  -
+    - xall
+    - -
+  -
+    - allx
+    - -
+  -
+    - +all
+    - -
+    - all
+    - all
+    - ~
+    - ~
+  -
+    - source+
+    - -
+    - source
+    - source
+    - ~
+    - ~
+  -
+    - hurd-armel
+    - -
+  -
+    - darwins390x
+    - -
+  -
+    - -darwin-s390x
+    - -
+    - darwin-s390x
+    - ~
+    - darwin
+    - s390x
+  -
+    - darwin--s390x
+    - -
+    - s390x
+    - ~
+    - ~
+    - s390x
+  -
+    - darwin-s390x-
+    - -
+    - darwin-s390x
+    - ~
+    - darwin
+    - s390x

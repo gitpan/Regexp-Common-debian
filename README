@@ -1,0 +1,64 @@
+
+==== OVERVIEW ====
+
+  The Regexp::Common::debian is collection of REs for various strings
+  found in the Debian Porject <http://debian.org>.  It's no way intended
+  to be a validation tool.
+
+  Right now (before first release) I can't decide what version of Perl
+  is needed.  I should admit though, I'll do my best to support perl
+  distributed with ``stable'' release of Debian GNU/Linux (at time of
+  writing it is ``v5.8.8'').  And I'll try hard to support perl in
+  ``oldstable'' (``v5.8.4'').
+
+
+==== INSTALL ====
+
+  The R::C::d is distributed with Module::Build.
+
+      $ perl Build.PL
+      $ perl Build
+      $ perl Build test
+      $ perl Build install
+
+  Since we're about strings we need a lots of strings to test against
+  (Test::More, unspecified version).  To access them easily (it's all
+  about reuse, not implemented yet) I need an apropriate storage. 
+  Accidentally it's YAML::Tiny (unspecified version).
+
+  If any test string fails I need to know what and how.  To provide that
+  info I've picked Test::Differences (maybe there's other option I'm not
+  aware of?).  (Surely I could go one of fail-proof ways described in
+  T::D pod; and what if something goes wrong? let's no play stupid hope
+  -- I must know what happened.) That yeilds a big problem.  T::D has
+  two (actually one) open bugs --
+  <http://rt.cpan.org/Public/Bug/Display.html?id=38320> and
+  <http://rt.cpan.org/Public/Bug/Display.html?id=41241> -- at time of
+  writing they are still open, no maintainer responce, patch is
+  provided.  Some test strings of R::C::d give ``undef'' as predicted
+  result.  That will provide a lots of "use of undef" warnings (really,
+  a lots of).  And as a matter of fact, T::D will be somewhat useles --
+  forgive me, let me figure out version relations first.
+
+
+==== AVAILABILITY ====
+
+  #FIXME: think http://cpan.org
+
+  #FIXME: think http://sourceforge.net
+
+
+==== BUGS ====
+
+  #FIXME: think http://rt.cpan.org
+
+
+==== COPYRIGHT AND LICENSING ====
+
+: *   Copyright 2008 Eric Pozharski <whynot@cpan.org>
+
+: *   AS-IS, NO-WARRANTY, HOPE-TO-BE-USEFUL
+
+: *   Lesser General Public License v3
+      <http://www.gnu.org/licenses/lgpl.txt>
+

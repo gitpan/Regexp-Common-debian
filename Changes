@@ -1,0 +1,15 @@
+  v0.0.10 20081231
+
+      + $RE{debian}{package} (69)
+      + $RE{debian}{version} (45)
+      + workaround for perls pre v5.10.0 for $RE{d}{version} (45)
+      + $RE{debian}{architecture} (16)
+      + $RE{debian}{archive}{binary} (50)
+      + $RE{debian}{archive}{source} (43)
+      + $RE{debian}{archive}{patch} (52)
+      + $RE{debian}{archive}{dsc} (50)
+      + $RE{debian}{archive}{changes} (50)
+      = XXX scores 8
+      = TODO scores 5
+      = FIXME scores 8
+

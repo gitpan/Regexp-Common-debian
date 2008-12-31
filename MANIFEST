@@ -1,0 +1,16 @@
+Build.PL
+Changes
+lib/Regexp/Common/debian.pm
+MANIFEST			This list of files
+META.yml
+README
+t/architecture.t
+t/architecture.yaml
+t/archive.t
+t/archive.yaml
+t/package.t
+t/package.yaml
+t/version.t
+t/version.yaml
+TestSuite.pm
+SIGNATURE    Added here by Module::Build
