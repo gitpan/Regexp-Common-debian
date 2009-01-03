@@ -1,3 +1,14 @@
+  v0.0.11 20090103
+
+      % $RE{debian}{archive}{changes} was hardly broken.
+          Copy-paste issue, fixed.
+
+      % Requiring perl v5.6.0
+          Since our is in use.
+
+      % Cosmetic documentation updates-n-fixes.
+      ~ $RE{debian}{archive}{changes} (-16 =34)
+
   v0.0.10 20081231
 
       + $RE{debian}{package} (69)

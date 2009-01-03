@@ -1024,251 +1024,182 @@ match_changes:
     - changes
     - -
   -
-    - 0.changes
+    - all.changes
     - -
   -
-    - 0-1.changes
+    - 0_all.changes
     - -
   -
-    - _0.changes
+    - _0_all.changes
     - -
   -
-    - _0-1.changes
+    - a0_0_notanarch.changes
     - -
   -
-    - a0_0-1.changes
+    - a0_0_all.changes
     - +
-    - a0_0-1.changes
-    - a0
-    - 0-1
-  -
-    - a0_0.changes
-    - +
-    - a0_0.changes
+    - a0_0_all.changes
     - a0
     - 0
+    - all
   -
-    - a0_0.changesfoo.bar
+    - a0_0_all.changesfoo.bar
     - -
   -
-    - _a0_0.changes
+    - _a0_0_all.changes
     - -
-    - a0_0.changes
+    - a0_0_all.changes
     - a0
     - 0
+    - all
   -
-    - a0_0-changes
+    - a0_0_all-changes
     - -
   -
-    - a0_0_changes
+    - a0_0_all_changes
     - -
   -
-    - a0_0-1_changes
+    - a0_0:1_all.changes
     - -
   -
-    - a0_0-1.changes.changes
-    - +
-    - a0_0-1.changes.changes
-    - a0
-    - 0-1.changes
-  -
-    - a0_0.changes.changes
-    - +
-    - a0_0.changes.changes
-    - a0
-    - 0.changes
-  -
-    - a0_0-1.changes.changes.changes
-    - +
-    - a0_0-1.changes.changes.changes
-    - a0
-    - 0-1.changes.changes
-  -
-    - a0_0.changes.changes.changes
-    - +
-    - a0_0.changes.changes.changes
-    - a0
-    - 0.changes.changes
-  -
-    - a0_0:1.changes
+    - a0_0%1_all.changes
     - -
   -
-    - a0_0%1.changes
+    - a0_0%3a1_all.changes
     - -
   -
-    - a0_0%3a1.changes
-    - -
-  -
-    - a0_0123456789-1.changes
+    - a0_0123456789_all.changes
     - +
-    - a0_0123456789-1.changes
-    - a0
-    - 0123456789-1
-  -
-    - a0_0123456789.changes
-    - +
-    - a0_0123456789.changes
+    - a0_0123456789_all.changes
     - a0
     - 0123456789
+    - all
   -
-    - a0_0abcdefghijklmnopqrstuvwxyz-1.changes
+    - a0_0abcdefghijklmnopqrstuvwxyz_all.changes
     - +
-    - a0_0abcdefghijklmnopqrstuvwxyz-1.changes
-    - a0
-    - 0abcdefghijklmnopqrstuvwxyz-1
-  -
-    - a0_0abcdefghijklmnopqrstuvwxyz.changes
-    - +
-    - a0_0abcdefghijklmnopqrstuvwxyz.changes
+    - a0_0abcdefghijklmnopqrstuvwxyz_all.changes
     - a0
     - 0abcdefghijklmnopqrstuvwxyz
+    - all
   -
-    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1.changes
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ_all.changes
     - +
-    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1.changes
-    - a0
-    - 0ABCDEFGHIJKLMNOPQRSTUVWXYZ-1
-  -
-    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ.changes
-    - +
-    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ.changes
+    - a0_0ABCDEFGHIJKLMNOPQRSTUVWXYZ_all.changes
     - a0
     - 0ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    - all
   -
-    - a0_0~1-2.changes
+    - a0_0-1_all.changes
     - +
-    - a0_0~1-2.changes
+    - a0_0-1_all.changes
     - a0
-    - 0~1-2
+    - 0-1
+    - all
   -
-    - a0_0~1.changes
+    - a0_0~1_all.changes
     - +
-    - a0_0~1.changes
+    - a0_0~1_all.changes
     - a0
     - 0~1
+    - all
   -
-    - a0_0.1-2.changes
+    - a0_0.1_all.changes
     - +
-    - a0_0.1-2.changes
-    - a0
-    - 0.1-2
-  -
-    - a0_0.1.changes
-    - +
-    - a0_0.1.changes
+    - a0_0.1_all.changes
     - a0
     - 0.1
+    - all
   -
-    - a0_0+1-2.changes
+    - a0_0+1_all.changes
     - +
-    - a0_0+1-2.changes
-    - a0
-    - 0+1-2
-  -
-    - a0_0+1.changes
-    - +
-    - a0_0+1.changes
+    - a0_0+1_all.changes
     - a0
     - 0+1
+    - all
   -
-    - a_0-1.changes
+    - a_0_all.changes
     - -
   -
-    - a_0.changes
-    - -
-  -
-    - abcdefghijklmnopqrstuvwxyz_0-1.changes
+    - abcdefghijklmnopqrstuvwxyz_0_all.changes
     - +
-    - abcdefghijklmnopqrstuvwxyz_0-1.changes
-    - abcdefghijklmnopqrstuvwxyz
-    - 0-1
-  -
-    - abcdefghijklmnopqrstuvwxyz_0.changes
-    - +
-    - abcdefghijklmnopqrstuvwxyz_0.changes
+    - abcdefghijklmnopqrstuvwxyz_0_all.changes
     - abcdefghijklmnopqrstuvwxyz
     - 0
+    - all
   -
-    - 0123456789_0-1.changes
+    - 0123456789_0_all.changes
     - +
-    - 0123456789_0-1.changes
-    - 0123456789
-    - 0-1
-  -
-    - 0123456789_0.changes
-    - +
-    - 0123456789_0.changes
+    - 0123456789_0_all.changes
     - 0123456789
     - 0
+    - all
   -
-    - a-0_0-1.changes
+    - a-0_0_all.changes
     - +
-    - a-0_0-1.changes
-    - a-0
-    - 0-1
-  -
-    - a-0_0.changes
-    - +
-    - a-0_0.changes
+    - a-0_0_all.changes
     - a-0
     - 0
+    - all
   -
-    - a-_0-1.changes
+    - a-_0_all.changes
     - +
-    - a-_0-1.changes
-    - a-
-    - 0-1
-  -
-    - a-_0.changes
-    - +
-    - a-_0.changes
+    - a-_0_all.changes
     - a-
     - 0
+    - all
   -
-    - a+0_0-1.changes
+    - a+0_0_all.changes
     - +
-    - a+0_0-1.changes
-    - a+0
-    - 0-1
-  -
-    - a+0_0.changes
-    - +
-    - a+0_0.changes
+    - a+0_0_all.changes
     - a+0
     - 0
+    - all
   -
-    - a+_0-1.changes
+    - a+_0_all.changes
     - +
-    - a+_0-1.changes
-    - a+
-    - 0-1
-  -
-    - a+_0.changes
-    - +
-    - a+_0.changes
+    - a+_0_all.changes
     - a+
     - 0
+    - all
   -
-    - a.0_1-2.changes
+    - a.0_1_all.changes
     - +
-    - a.0_1-2.changes
-    - a.0
-    - 1-2
-  -
-    - a.0_1.changes
-    - +
-    - a.0_1.changes
+    - a.0_1_all.changes
     - a.0
     - 1
+    - all
   -
-    - a._0-1.changes
+    - a._0_all.changes
     - +
-    - a._0-1.changes
-    - a.
-    - 0-1
-  -
-    - a._0.changes
-    - +
-    - a._0.changes
+    - a._0_all.changes
     - a.
     - 0
+    - all
+  -
+    - a0_0_source.changes
+    - +
+    - a0_0_source.changes
+    - a0
+    - 0
+    - source
+  -
+    - a0_0_any.changes
+    - +
+    - a0_0_any.changes
+    - a0
+    - 0
+    - any
+  -
+    - a0_0_s390x.changes
+    - +
+    - a0_0_s390x.changes
+    - a0
+    - 0
+    - s390x
+  -
+    - a0_0_solaris-powerpc.changes
+    - +
+    - a0_0_solaris-powerpc.changes
+    - a0
+    - 0
+    - solaris-powerpc

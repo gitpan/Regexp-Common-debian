@@ -1,10 +1,10 @@
-# $Id: debian.pm 13 2008-12-31 10:34:06Z whyn0t $
+# $Id: debian.pm 15 2009-01-03 15:25:30Z whyn0t $
 
 package Regexp::Common::debian;
 use strict;
 use warnings;
 
-use version 0.50; our $VERSION = qv q|0.0.10|;
+use version 0.50; our $VERSION = qv q|0.0.11|;
 
 use Carp;
 
@@ -331,6 +331,7 @@ As a feature B<$RE{d}{a}{binary}> provides an I<epoch> hack in filenames.
 
 =item I<$4> is I<architecture>
 
+B<(caveat)>
 That would match surprising C<source> or C<any>.
 Sorry.
 That'll improve in future.
@@ -555,10 +556,12 @@ As usual, since the only suffix can be F<.changes> it's present in I<$1> only.
 
 =item I<$3> is I<version>
 
-=back
+=item I<$4> is I<architecture>
 
-blah-blah refering to B<$RE{d}{a}{source}>
-(consider: C<0.changes> can be I<version>).
+B<(caveat)>
+Please read B<$RE{d}{a}{binary}> section for details.
+
+=back
 
 =cut
 
@@ -571,9 +574,10 @@ pattern
       grep $flags->{-policy} eq $_, qw| strict real loose looser | or
         croak qq|unknown I<-policy>: C<$flags->{-policy}>|;
       return
-        q|(?k:|                         .
-          q|(?k:[a-z0-9][a-z0-9+.-]+)_| .
-          qq|(?k:[0-9][~$Magic-]*?)|    .
+        q|(?k:|                                                .
+          q|(?k:[a-z0-9][a-z0-9+.-]+)_|                        .
+          qq|(?k:[0-9][~$Magic-]*?)_|                          .
+          qq{(?k:(?:(?:$Oses)-)?(?:$Arches|$xArches|$Extras))} .
         qq{\\.changes)(?![~$Magic-])}; }, ;
 
 =back

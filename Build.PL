@@ -1,11 +1,11 @@
 #!/usr/bin/perl
-# $Id: Build.PL 13 2008-12-31 10:34:06Z whyn0t $
+# $Id: Build.PL 15 2009-01-03 15:25:30Z whyn0t $
 
 package main;
 use strict;
 use warnings;
 
-use version 0.50; our $VERSION = qv q|0.0.4|;
+use version 0.50; our $VERSION = qv q|0.0.5|;
 
 use Module::Build 0.20;
 
@@ -63,6 +63,7 @@ my $engine = Module::Build->new(
   license           => q|lgpl|,
   sign              => 1,
   requires          => {
+    q|perl|           => q|5.6.0|,
     q|version|        => 0.50,
     q|Regexp::Common| => '', },
   build_requires    => {
@@ -71,10 +72,10 @@ my $engine = Module::Build->new(
     q|Test::More|        => '', },
   PL_files          => {
     ( -f q|README.PL|  ? ( q|README.PL|  => q|README|  ) : ()),
-    ( -f q|CHANGES.PL| ? ( q|CHANGES.PL| => q|Changes| ) : ()), },
+    ( -f q|Changes.PL| ? ( q|Changes.PL| => q|Changes| ) : ()), },
   add_to_cleanup    => [ qw| *.tmp *.bak foo.* |,
     ( -f q|README.PL|  ? q|README|  : ()),
-    ( -f q|CHANGES.PL| ? q|Changes| : ()), ],);
+    ( -f q|Changes.PL| ? q|Changes| : ()), ],);
 
 $engine->create_build_script();
 

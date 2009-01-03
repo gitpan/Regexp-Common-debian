@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: version.t 13 2008-12-31 10:34:06Z whyn0t $
+# $Id: version.t 15 2009-01-03 15:25:30Z whyn0t $
 
 package main;
 use strict;
@@ -9,7 +9,7 @@ use TestSuite      qw| RCD_process_patterns     |;
 #use Regexp::Common qw| debian RE_debian_version |;
 use Test::More tests => 94;
 
-our $VERSION = qv q|0.0.5|;
+our $VERSION = qv q|0.0.6|;
 
 my %patterns = TestSuite::RCD_load_patterns;
 
@@ -17,7 +17,7 @@ sub RCD_base_version ()           {
     my $pat = q|2:345-67|;
 SKIP:                                    {
     skip qq{perl of $] doesn't have C<qr/(?|)/>}, 4
-      if $] <= 5.008008;
+      if $] <= 5.008009;
     eval { use Regexp::Common qw| debian RE_debian_version |; };
     ok
       $pat =~ m|$RE{debian}{version}|,
@@ -39,7 +39,7 @@ SKIP:                                                {
     skip
       qq{perl of $] doesn't have C<qr/(?|)/>},
       scalar @{$patterns{match_version}}
-      if $] <= 5.008008;
+      if $] <= 5.008009;
     eval { use Regexp::Common qw| debian |; };
     RCD_process_patterns(
       patterns => $patterns{match_version},

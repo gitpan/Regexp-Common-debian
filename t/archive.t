@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: archive.t 13 2008-12-31 10:34:06Z whyn0t $
+# $Id: archive.t 15 2009-01-03 15:25:30Z whyn0t $
 
 package main;
 use strict;
@@ -13,9 +13,9 @@ use Regexp::Common qw|
   RE_debian_archive_patch
   RE_debian_archive_dsc
   RE_debian_archive_changes                 |;
-use Test::More tests => 265;
+use Test::More tests => 249;
 
-our $VERSION = qv q|0.0.7|;
+our $VERSION = qv q|0.0.8|;
 
 my %patterns = TestSuite::RCD_load_patterns;
 
@@ -112,7 +112,7 @@ sub RCD_match_dsc ()                                      {
       re_g     => qr|$RE{debian}{archive}{dsc}{-keep}|, ); };
 
 sub RCD_base_changes ()                   {
-    my $pat = q|abc_012-34.changes|;
+    my $pat = q|abc_012-34_ia64.changes|;
     ok
       $pat =~ m|$RE{debian}{archive}{changes}|,
       q|/$RE{debian}{archive}{changes}/ matches|;
