@@ -1,24 +1,29 @@
-# $Id: TestSuite.pm 9 2008-12-12 03:37:21Z whyn0t $
+# $Id: TestSuite.pm 20 2009-02-07 21:10:39Z whyn0t $
 
-package TestSuite;
+package t::TestSuite;
 
 use strict;
 use warnings;
 use version 0.50;
 
-use base qw(Exporter);
-use vars qw(@EXPORT_OK);
+use base qw| Exporter   |;
+use vars qw| @EXPORT_OK |;
 use Cwd;
 use YAML::Tiny;
 use Test::Differences;
+use Data::Dumper;
+use Module::Build;
 
-our $VERSION = qv q|0.0.2|;
+our $VERSION = qv q|0.1.2|;
 
-use lib q(./blib/lib);
+use lib q|./blib/lib|;
 
 @EXPORT_OK = qw| RCD_process_patterns |;
 
 $ENV{PERL5LIB} = getcwd . q(/blib/lib);
+
+# FIXME: B<&Module::Build::runtime_params> apeared in v0.28
+our $Verbose = eval { Module::Build->current->runtime_params(q|verbose|); };
 
 sub RCD_do_units (\@@)       {
     my($units) = shift @_;
@@ -42,24 +47,31 @@ sub RCD_save_patterns ($\%) {
     $yaml->[0] = $data;
     $yaml->write($fn);       };
 
-sub RCD_process_patterns (%)     {
+sub RCD_process_patterns (%) {
     my %args = ( @_ );
-    my(@in, @out);
 
-    foreach my $ptn (@{$args{patterns}})         {
+    foreach my $ptn (@{$args{patterns}})     {
         my @in =  ( @$ptn );
         my @out = (
           $ptn->[0],
           ($ptn->[0] =~ $args{re_m} ? '+' : '-'),
           $ptn->[0] =~ $args{re_g} );
+        my $dump = Data::Dumper
+          ->new([ $ptn->[0] ])
+          ->Terse(1)
+          ->Useqq(1)
+          ->Indent(0)
+          ->Dump;
+        $dump =~ s{^"(.+)"$}{$1};
         eq_or_diff_data
           \@out,
           \@in,
-          sprintf q|%s %s|, $ptn->[1], $ptn->[0]; };
+          sprintf q|%s %s|, $ptn->[1], $dump; };
 
     Test::More::diag(
       sprintf q|processed patterns (%s): %i|,
       (caller 1)[3],
-      scalar @{$args{patterns}}); };
+      scalar @{$args{patterns}})
+      if $Verbose;            };
 
 1;

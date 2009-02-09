@@ -1,19 +1,20 @@
 #!/usr/bin/perl
-# $Id: architecture.t 13 2008-12-31 10:34:06Z whyn0t $
+# $Id: architecture.t 16 2009-01-08 19:03:31Z whyn0t $
 
 package main;
 use strict;
 use warnings;
 use version 0.50;
-use TestSuite      qw| RCD_process_patterns          |;
+use t::TestSuite   qw| RCD_process_patterns          |;
 use Regexp::Common qw| debian RE_debian_architecture |;
-use Test::More tests => 20;
+use Test::More;
 
-our $VERSION = qv q|0.0.3|;
+our $VERSION = qv q|0.0.4|;
 
-my %patterns = TestSuite::RCD_load_patterns;
+my %patterns = t::TestSuite::RCD_load_patterns;
+plan tests => 4 + @{$patterns{match_architecture}};
 
-sub RCD_base_architecture ()          {
+sub RCD_base_architecture ()    {
     my $pat = q|openbsd-arm|;
     ok
       $pat =~ m|$RE{debian}{architecture}|,
@@ -28,7 +29,8 @@ sub RCD_base_architecture ()          {
     ok
       $RE{debian}{architecture}->matches($pat),
       q|$RE{debian}{architecture}->matches .|;
-    diag q|finished (main::RCD_base)|; };
+    diag q|finished (main::RCD_base)|
+      if $t::TestSuite::Verbose; };
 
 sub RCD_match_architecture ()                             {
     RCD_process_patterns(
@@ -40,6 +42,6 @@ my @units = (
   \&RCD_base_architecture,
   \&RCD_match_architecture, );
 
-TestSuite::RCD_do_units @units, @ARGV;
+t::TestSuite::RCD_do_units @units, @ARGV;
 
 # vim: syntax=perl

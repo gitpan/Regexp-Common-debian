@@ -1,3 +1,12 @@
+  v0.1.4 20090209
+
+      + $RE{debian}{sourceslist} (30)
+      + $RE{debian}{preferences} (74)
+      + $RE{debian}{changelog} (81)
+      % TestSuite.pm does one less string eval.
+      % Documentation upgraded.
+      % Various changes and updates to satisfy CPAN.
+
   v0.0.11 20090103
 
       % $RE{debian}{archive}{changes} was hardly broken.

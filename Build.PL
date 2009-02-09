@@ -1,11 +1,11 @@
 #!/usr/bin/perl
-# $Id: Build.PL 15 2009-01-03 15:25:30Z whyn0t $
+# $Id: Build.PL 21 2009-02-09 01:34:32Z whyn0t $
 
 package main;
 use strict;
 use warnings;
 
-use version 0.50; our $VERSION = qv q|0.0.5|;
+use version 0.50; our $VERSION = qv q|0.1.2|;
 
 use Module::Build 0.20;
 
@@ -15,7 +15,8 @@ The B<Regexp::Common::debian> is collection of REs for various strings found in
 the Debian Porject E<lt>L<http:E<sol>E<sol>debian.org>E<gt>.
 It's no way intended to be a validation tool.
 
-Right now (before first release) I can't decide what version of Perl is needed.
+Since B<Regexp::Common::debian> uses B<our> operator that was introduced in
+C<v5.6.0>, B<R::C::d> needs C<v5.6.0> to run.
 I should admit though, I'll do my best to support perl distributed with
 C<stable> release of Debian GNU/Linux
 (at time of writing it is C<v5.8.8>).
@@ -44,10 +45,7 @@ and what if something goes wrong?
 let's no play stupid hope -- I must know what happened.)
 That yeilds a big problem.
 B<T::D> has two (actually one) open bugs --
-E<lt>L<http:E<sol>E<sol>rt.cpan.orgZ<>E<sol>PublicZ<>E<sol>BugZ<>E<sol>Display.html?id=38320|[#38320]>E<gt>
-and
-E<lt>L<http:E<sol>E<sol>rt.cpan.orgZ<>E<sol>PublicZ<>E<sol>BugZ<>E<sol>Display.html?id=41241|[#41241]>E<gt>
---
+B<[38320@rt.cpan.org]> and B<[41241@rt.cpan.org]> --
 at time of writing they are still open, no maintainer responce, patch is
 provided.
 Some test strings of B<R::C::d> give C<undef> as predicted result.
@@ -81,13 +79,36 @@ $engine->create_build_script();
 
 =head1 AVAILABILITY
 
-#FIXME: think http:E<sol>E<sol>cpan.org
+=over
 
-#FIXME: think http:E<sol>E<sol>sourceforge.net
+=item pure distribution
+
+http://search.cpan.org/dist/Regexp-Common-debian/
+
+=item and debianization stuff too
+
+http://sourceforge.net/project/showfiles.php?group_id=240235
+
+=item subversion (root)
+
+https://debian-regexp.svn.sourceforge.net/svnroot/debian-regexp
+
+=back
 
 =head1 BUGS
 
-#FIXME: think http:E<sol>E<sol>rt.cpan.org
+=over
+
+=item please report here
+
+http://rt.cpan.org/Public/Dist/Display.html?Name=Regexp-Common-debian
+
+=item please don't report there
+
+Whatever trackers beyond http://sourceforge.net are
+disabled (hidden actually).
+
+=back
 
 =head1 COPYRIGHT AND LICENSING
 
@@ -95,7 +116,7 @@ $engine->create_build_script();
 
 =item *
 
-Copyright 2008 Eric Pozharski <whynot@cpan.org>
+Copyright 2008, 2009 Eric Pozharski <whynot@cpan.org>
 
 =item *
 
@@ -103,7 +124,7 @@ AS-IS, NO-WARRANTY, HOPE-TO-BE-USEFUL
 
 =item *
 
-Lesser General Public License v3
+GNU Lesser General Public License v3
 E<lt>L<http:E<sol>E<sol>www.gnu.orgZ<>E<sol>licensesZ<>E<sol>lgpl.txt>E<gt>
 
 =back

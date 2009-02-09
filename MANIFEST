@@ -8,9 +8,15 @@ t/architecture.t
 t/architecture.yaml
 t/archive.t
 t/archive.yaml
+t/changelog.t
+t/changelog.yaml
 t/package.t
 t/package.yaml
+t/preferences.t
+t/preferences.yaml
+t/sourceslist.t
+t/sourceslist.yaml
+t/TestSuite.pm
 t/version.t
 t/version.yaml
-TestSuite.pm
 SIGNATURE    Added here by Module::Build

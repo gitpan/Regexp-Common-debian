@@ -1,11 +1,11 @@
 #!/usr/bin/perl
-# $Id: archive.t 15 2009-01-03 15:25:30Z whyn0t $
+# $Id: archive.t 16 2009-01-08 19:03:31Z whyn0t $
 
 package main;
 use strict;
 use warnings;
 use version 0.50;
-use TestSuite      qw| RCD_process_patterns |;
+use t::TestSuite   qw| RCD_process_patterns |;
 use Regexp::Common qw|
   debian
   RE_debian_archive_binary
@@ -13,13 +13,19 @@ use Regexp::Common qw|
   RE_debian_archive_patch
   RE_debian_archive_dsc
   RE_debian_archive_changes                 |;
-use Test::More tests => 249;
+use Test::More;
 
-our $VERSION = qv q|0.0.8|;
+our $VERSION = qv q|0.0.9|;
 
-my %patterns = TestSuite::RCD_load_patterns;
+my %patterns = t::TestSuite::RCD_load_patterns;
+plan tests =>
+  (4 + @{$patterns{match_binary}}) +
+  (4 + @{$patterns{match_source}}) +
+  (4 + @{$patterns{match_patch}})  +
+  (4 + @{$patterns{match_dsc}})    +
+  (4 + @{$patterns{match_changes}});
 
-sub RCD_base_binary ()                   {
+sub RCD_base_binary ()          {
     my $pat = q|abc_012_i386.deb|;
     ok
       $pat =~ m|$RE{debian}{archive}{binary}|,
@@ -34,7 +40,8 @@ sub RCD_base_binary ()                   {
     ok
       $RE{debian}{archive}{binary}->matches($pat),
       q|$RE{debian}{archive}{binary}->matches .|;
-    diag q|finished (main::base_binary)|; };
+    diag q|finished (main::base_binary)|
+      if $t::TestSuite::Verbose; };
 
 sub RCD_match_binary ()                                      {
     RCD_process_patterns(
@@ -42,7 +49,7 @@ sub RCD_match_binary ()                                      {
       re_m     => qr|^$RE{debian}{archive}{binary}$|,
       re_g     => qr|$RE{debian}{archive}{binary}{-keep}|, ); };
 
-sub RCD_base_source ()                   {
+sub RCD_base_source ()          {
     my $pat = q|abc_012.orig.tar.gz|;
     ok
       $pat =~ m|$RE{debian}{archive}{source}|,
@@ -57,7 +64,8 @@ sub RCD_base_source ()                   {
     ok
       $RE{debian}{archive}{source}->matches($pat),
       q|$RE{debian}{archive}{source}->matches .|;
-    diag q|finished (main::base_source)|; };
+    diag q|finished (main::base_source)|
+      if $t::TestSuite::Verbose; };
 
 sub RCD_match_source ()                                      {
     RCD_process_patterns(
@@ -65,7 +73,7 @@ sub RCD_match_source ()                                      {
       re_m     => qr|^$RE{debian}{archive}{source}$|,
       re_g     => qr|$RE{debian}{archive}{source}{-keep}|, ); };
 
-sub RCD_base_patch ()                   {
+sub RCD_base_patch ()           {
     my $pat = q|abc_012-34.diff.gz|;
     ok
       $pat =~ m|$RE{debian}{archive}{patch}|,
@@ -80,7 +88,8 @@ sub RCD_base_patch ()                   {
     ok
       $RE{debian}{archive}{patch}->matches($pat),
       q|$RE{debian}{archive}{patch}->matches .|;
-    diag q|finished (main::base_patch)|; };
+    diag q|finished (main::base_patch)|
+      if $t::TestSuite::Verbose; };
 
 sub RCD_match_patch ()                                      {
     RCD_process_patterns(
@@ -88,7 +97,7 @@ sub RCD_match_patch ()                                      {
       re_m     => qr|^$RE{debian}{archive}{patch}$|,
       re_g     => qr|$RE{debian}{archive}{patch}{-keep}|, ); };
 
-sub RCD_base_dsc ()                   {
+sub RCD_base_dsc ()             {
     my $pat = q|abc_012-34.dsc|;
     ok
       $pat =~ m|$RE{debian}{archive}{dsc}|,
@@ -103,7 +112,8 @@ sub RCD_base_dsc ()                   {
     ok
       $RE{debian}{archive}{dsc}->matches($pat),
       q|$RE{debian}{archive}{dsc}->matches .|;
-    diag q|finished (main::base_dsc)|; };
+    diag q|finished (main::base_dsc)|
+      if $t::TestSuite::Verbose; };
 
 sub RCD_match_dsc ()                                      {
     RCD_process_patterns(
@@ -111,7 +121,7 @@ sub RCD_match_dsc ()                                      {
       re_m     => qr|^$RE{debian}{archive}{dsc}$|,
       re_g     => qr|$RE{debian}{archive}{dsc}{-keep}|, ); };
 
-sub RCD_base_changes ()                   {
+sub RCD_base_changes ()         {
     my $pat = q|abc_012-34_ia64.changes|;
     ok
       $pat =~ m|$RE{debian}{archive}{changes}|,
@@ -126,7 +136,8 @@ sub RCD_base_changes ()                   {
     ok
       $RE{debian}{archive}{changes}->matches($pat),
       q|$RE{debian}{archive}{changes}->matches .|;
-    diag q|finished (main::base_changes)|; };
+    diag q|finished (main::base_changes)|
+      if $t::TestSuite::Verbose; };
 
 sub RCD_match_changes ()                                      {
     RCD_process_patterns(
@@ -146,6 +157,6 @@ my @units = (
   \&RCD_base_changes,
   \&RCD_match_changes, );
 
-TestSuite::RCD_do_units @units, @ARGV;
+t::TestSuite::RCD_do_units @units, @ARGV;
 
 # vim: syntax=perl

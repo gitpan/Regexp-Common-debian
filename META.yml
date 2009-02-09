@@ -1,6 +1,6 @@
 ---
 name: Regexp-Common-debian
-version: 0.0.11
+version: 0.1.4
 author:
   - 'Eric Pozharski <whynot@cpan.org>'
 abstract: regexps for Debian specific strings
@@ -18,7 +18,7 @@ build_requires:
 provides:
   Regexp::Common::debian:
     file: lib/Regexp/Common/debian.pm
-    version: 0.0.11
+    version: 0.1.4
 generated_by: Module::Build version 0.280801
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
