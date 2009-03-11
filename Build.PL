@@ -1,11 +1,11 @@
 #!/usr/bin/perl
-# $Id: Build.PL 21 2009-02-09 01:34:32Z whyn0t $
+# $Id: Build.PL 26 2009-03-11 17:28:35Z whyn0t $
 
 package main;
 use strict;
 use warnings;
 
-use version 0.50; our $VERSION = qv q|0.1.2|;
+use version 0.50; our $VERSION = qv q|0.1.3|;
 
 use Module::Build 0.20;
 
@@ -19,8 +19,8 @@ Since B<Regexp::Common::debian> uses B<our> operator that was introduced in
 C<v5.6.0>, B<R::C::d> needs C<v5.6.0> to run.
 I should admit though, I'll do my best to support perl distributed with
 C<stable> release of Debian GNU/Linux
-(at time of writing it is C<v5.8.8>).
-And I'll try hard to support perl in C<oldstable> (C<v5.8.4>).
+(at time of writing it is C<v5.10.0>).
+And I'll try hard to support perl in C<oldstable> (C<v5.8.8>).
 
 =head1 INSTALL
 
@@ -39,10 +39,13 @@ Accidentally it's B<YAML::Tiny> (unspecified version).
 
 If any test string fails I need to know what and how.
 To provide that info I've picked B<Test::Differences>
-(maybe there's other option I'm not aware of?).
+(maybe there's other option I'm not aware of?)
+(I'm, B<Test::Deep>).
 (Surely I could go one of fail-proof ways described in B<T::D> pod;
 and what if something goes wrong?
 let's no play stupid hope -- I must know what happened.)
+(After looking at number of C<UNKNOWN> results from CPAN-Testers -- I think, I
+should.)
 That yeilds a big problem.
 B<T::D> has two (actually one) open bugs --
 B<[38320@rt.cpan.org]> and B<[41241@rt.cpan.org]> --

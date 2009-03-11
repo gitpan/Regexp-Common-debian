@@ -1,10 +1,10 @@
-# $Id: debian.pm 21 2009-02-09 01:34:32Z whyn0t $
+# $Id: debian.pm 26 2009-03-11 17:28:35Z whyn0t $
 
 package Regexp::Common::debian;
 use strict;
 use warnings;
 
-use version 0.50; our $VERSION = qv q|0.1.4|;
+use version 0.50; our $VERSION = qv q|0.1.5|;
 
 =head1 NAME
 
@@ -902,16 +902,39 @@ I<key>=I<value> pair is put in I<$5> --
 so you've better be prepared and pick a I<key> you're looking for
 (one day you can get a lot more).
 
+B<(caveat)> B<(v.0.1.5)>
+I wasn't enough pessimistic.
+B<perl5.8.8> goes nuts sometimes looking for C<urgency>
+(it happens to be an anchor)
+(namely: C<libcompress-zlib-perl_2.015-1>)
+(B<perl5.10.0> is OK).
+In misguided attempt to support oldstable
+(yes, it's oldstable already)
+B<$RE{d}{changelog}> no more looks for C<urgency>,
+it looks for a sequence of lowercase letters.
+Sorry.
+
 =item I<$6> is I<changes>
 
 That invents concept of empty line.
-For B<$RE{d}{changelog}> "empty line" consists lone newline.
-OTOH, "line" is 2 spaces and anything up to next newline
+
+B<(v.0.1.5)>
+For B<$RE{d}{changelog}> "empty line" consists of any number horizontal spaces
+(space (C<S< >>) and tab (C<"\t">))
+followed by newline.
+OTOH, "line" is 2 horizontal spaces, any non-space character, and anything up to
+next newline
 (space counts as "anything" too).
-1 or 2 spaces and newline fails entirely.
+No or 1 space followed by non-space fails entirely
+(but watch for trailing signature line).
 As requested by Debian Policy (or stock parser) leading and trailing empty
 lines are ignored
 (they are included in I<$1> though).
+
+B<(bug)>
+Any sequence of trailing 3 or more horizontal spaces is included in I<$6>.
+(Looking at test-suite: handling of trailing empty lines by
+B<$RE{d}{changelog}> is a way broken.)
 
 B<(note)> (I can't say is it a bug or feature)
 The recommended way of outlineing I<changes> is starting each subentry with
@@ -960,11 +983,13 @@ pattern
       q|(?k:[a-z0-9+.-]+)\040|                            .
       q|\((?k:[0-9][0-9A-Za-z.+:~-]*)\)\040|              .
       q|(?k:[a-z][a-z -]*)(?<!\040);\040|                 .
-      q|(?k:urgency=[A-Za-z]+)\n+|                        .
+      q|(?k:[a-z]+=[A-Za-z]+)\n+|                         .
+      q|(?:\040*\n)*|                                     .
       q|(?k:(?:|                                          .
         q'^\040{2}[^\n]+\n|'                              .
-        q'^\n(?>!\n*\040--)'                              .
-      q|)+)\n*|                                           .
+        q'^(?:\040+\n)+(?=\040{2}[^\n])|'                 .
+        q'^\n(?!\n*\040--)'                               .
+      q|)+)(?:\040*\n)*|                                  .
       q|\040--\040|                                       .
 # FIXME: Should use B<Regexp::Common::Email::Address>
         q|(?k:(?<=-\040)[^ \n][^\n]+)(?<!\040)\040|       .

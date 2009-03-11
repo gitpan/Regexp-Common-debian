@@ -1,3 +1,8 @@
+  v0.1.5 20090311
+
+      ~ $RE{debian}{changelog} (+34 =115)
+      % Documentation fixes.
+
   v0.1.4 20090209
 
       + $RE{debian}{sourceslist} (30)

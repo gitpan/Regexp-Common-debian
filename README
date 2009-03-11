@@ -8,8 +8,8 @@
   Since Regexp::Common::debian uses our operator that was introduced in
   ``v5.6.0'', R::C::d needs ``v5.6.0'' to run.  I should admit though,
   I'll do my best to support perl distributed with ``stable'' release of
-  Debian GNU/Linux (at time of writing it is ``v5.8.8'').  And I'll try
-  hard to support perl in ``oldstable'' (``v5.8.4'').
+  Debian GNU/Linux (at time of writing it is ``v5.10.0'').  And I'll try
+  hard to support perl in ``oldstable'' (``v5.8.8'').
 
 
 ==== INSTALL ====
@@ -28,16 +28,17 @@
 
   If any test string fails I need to know what and how.  To provide that
   info I've picked Test::Differences (maybe there's other option I'm not
-  aware of?).  (Surely I could go one of fail-proof ways described in
-  T::D pod; and what if something goes wrong? let's no play stupid hope
-  -- I must know what happened.) That yeilds a big problem.  T::D has
-  two (actually one) open bugs -- [38320@rt.cpan.org] and
-  [41241@rt.cpan.org] -- at time of writing they are still open, no
-  maintainer responce, patch is provided.  Some test strings of R::C::d
-  give ``undef'' as predicted result.  That will provide a lots of "use
-  of undef" warnings (really, a lots of).  And as a matter of fact, T::D
-  will be somewhat useles -- forgive me, let me figure out version
-  relations first.
+  aware of?) (I'm, Test::Deep).  (Surely I could go one of fail-proof
+  ways described in T::D pod; and what if something goes wrong? let's no
+  play stupid hope -- I must know what happened.) (After looking at
+  number of ``UNKNOWN'' results from CPAN-Testers -- I think, I should.)
+  That yeilds a big problem.  T::D has two (actually one) open bugs --
+  [38320@rt.cpan.org] and [41241@rt.cpan.org] -- at time of writing they
+  are still open, no maintainer responce, patch is provided.  Some test
+  strings of R::C::d give ``undef'' as predicted result.  That will
+  provide a lots of "use of undef" warnings (really, a lots of).  And as
+  a matter of fact, T::D will be somewhat useles -- forgive me, let me
+  figure out version relations first.
 
 
 ==== AVAILABILITY ====
