@@ -1,23 +1,23 @@
 ---
 match_sourceslist:
   -
-    - 
-    - -
+    - ''
+    - '-'
   -
     - deb
-    - -
+    - '-'
   -
     - deb ftp:
-    - -
+    - '-'
   -
     - deb ftp://
-    - -
+    - '-'
   -
     - deb ftp://something
-    - -
+    - '-'
   -
     - deb bwahaha://something alpha
-    - -
+    - '-'
   -
     - deb ftp://something alpha
     - +
@@ -30,10 +30,10 @@ match_sourceslist:
     - ~
   -
     - xdeb ftp://something alpha
-    - -
+    - '-'
   -
     - =deb ftp://something alpha
-    - -
+    - '-'
     - deb ftp://something alpha
     - deb
     - ftp://something
@@ -43,10 +43,10 @@ match_sourceslist:
     - ~
   -
     - "deb\nftp://something alpha"
-    - -
+    - '-'
   -
     - "deb ftp://something\nalpha"
-    - -
+    - '-'
   -
     - "deb ftp://something alpha\n"
     - +
@@ -59,7 +59,7 @@ match_sourceslist:
     - ~
   -
     - 'deb ftp://something alpha '
-    - -
+    - '-'
     - deb ftp://something alpha
     - deb
     - ftp://something
@@ -78,9 +78,9 @@ match_sourceslist:
     - alpha
     - ~
   -
-    - deb ftp:{}()[]*?.,: alpha
+    - 'deb ftp:{}()[]*?.,: alpha'
     - +
-    - deb ftp:{}()[]*?.,: alpha
+    - 'deb ftp:{}()[]*?.,: alpha'
     - deb
     - 'ftp:{}()[]*?.,:'
     - ftp
@@ -88,14 +88,14 @@ match_sourceslist:
     - alpha
     - ~
   -
-    - deb ftp://something {}[]()
+    - 'deb ftp://something {}[]()'
     - +
-    - deb ftp://something {}[]()
+    - 'deb ftp://something {}[]()'
     - deb
     - ftp://something
     - ftp
     - //something
-    - {}[]()
+    - '{}[]()'
     - ~
   -
     - deb-src ftp://something alpha
@@ -197,4 +197,3 @@ match_sourceslist:
     - //something
     - alpha
     - ~
-...

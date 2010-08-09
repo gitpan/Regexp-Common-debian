@@ -1,13 +1,17 @@
 Build.PL
+Build.sh
 Changes
 lib/Regexp/Common/debian.pm
 MANIFEST			This list of files
 META.yml
 README
+Regexp-Common-debian-v0.2.10.tar.gz
 t/architecture.t
 t/architecture.yaml
-t/archive.t
-t/archive.yaml
+t/archive.misc.t
+t/archive.misc.yaml
+t/archive.source.t
+t/archive.source.yaml
 t/changelog.t
 t/changelog.yaml
 t/package.t

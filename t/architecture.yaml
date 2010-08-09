@@ -36,56 +36,83 @@ match_architecture:
     - hurd
     - hppa
   -
-    - 
-    - -
+    - ''
+    - '-'
   -
     - a0
-    - -
+    - '-'
   -
     - xall
-    - -
+    - '-'
   -
     - allx
-    - -
+    - '-'
   -
     - +all
-    - -
+    - '-'
     - all
     - all
     - ~
     - ~
   -
     - source+
-    - -
+    - '-'
     - source
     - source
+    - ~
+    - ~
+  -
+    - all-lpia
+    - '-'
+    - all
+    - all
+    - ~
+    - ~
+  -
+    - any-kfreebsd
+    - '-'
+    - any
+    - any
+    - ~
+    - ~
+  -
+    - source-kopensolaris-sparc
+    - '-'
+    - source
+    - source
+    - ~
+    - ~
+  -
+    - knetbsd-all
+    - '-'
+    - all
+    - all
     - ~
     - ~
   -
     - hurd-armel
-    - -
+    - '-'
   -
     - darwins390x
-    - -
+    - '-'
   -
     - -darwin-s390x
-    - -
+    - '-'
     - darwin-s390x
     - ~
     - darwin
     - s390x
   -
     - darwin--s390x
-    - -
+    - '-'
     - s390x
     - ~
     - ~
     - s390x
   -
     - darwin-s390x-
-    - -
+    - '-'
     - darwin-s390x
     - ~
     - darwin
     - s390x
-...

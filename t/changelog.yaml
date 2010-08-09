@@ -1,8 +1,8 @@
 ---
 match_changelog:
   -
-    - 
-    - -
+    - ''
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
@@ -17,10 +17,10 @@ match_changelog:
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300"
-    - -
+    - '-'
   -
     - "that's supposed to be before\nperl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\nthat's supposed to go after\n"
-    - -
+    - '-'
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - perl
     - 6.0.0-1
@@ -32,10 +32,10 @@ match_changelog:
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - " perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "PERL (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "abcdefghijklmnopqrstuvwxyz (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
@@ -74,13 +74,13 @@ match_changelog:
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "perl  (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl 6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1 unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (0) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
@@ -142,17 +142,29 @@ match_changelog:
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
+    - "perl (:-+~.) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (:-+~.) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - :-+~.
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
     - "perl (!@#$) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl {6.0.0-1} unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1)  unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) a b; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
@@ -191,7 +203,7 @@ match_changelog:
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "perl (6.0.0-1) -unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) abc -def; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
@@ -205,17 +217,32 @@ match_changelog:
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
+    - "perl (6.0.0-1) UNRELEASED; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) UNRELEASED; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - UNRELEASED
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
     - "perl (6.0.0-1) unstable ; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
+  -
+    - "perl (6.0.0-1) unstable\t; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - '-'
   -
     - "perl (6.0.0-1) unstable, urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable;  urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; UrGeNcY=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; bwahaha=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
@@ -242,10 +269,88 @@ match_changelog:
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "perl (6.0.0-1) unstable; urgency=high,foo=bar\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high,foo=bar\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high,foo=bar
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high,\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high,\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high()\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high()\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; foo=bar,urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; foo=bar,urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - foo=bar,urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "perl (6.0.0-1) unstable; urgency=high \n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high \n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\t\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\t\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high foobar\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high foobar\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "perl (6.0.0-1) unstable; urgency=HiGh\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
@@ -259,12 +364,63 @@ match_changelog:
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
-    - "perl (6.0.0-1) unstable; UrGeNcY=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - "perl (6.0.0-1) unstable; urgency=high\n * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - '-'
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n* At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
     - "perl (6.0.0-1) unstable; urgency=high\n\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n \n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n \n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  \n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  \n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n   \n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n   \n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n\t\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n\t\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - perl
     - 6.0.0-1
     - unstable
@@ -498,12 +654,72 @@ match_changelog:
     - unstable
     - urgency=high
     - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n\t  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n\t  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "\t  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n \t * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n \t * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - " \t * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  \t* At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  \t* At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  \t* At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n \t* At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n \t* At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - " \t* At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n\t* At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n\t* At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "\t* At last.\n"
     - John Doe
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "perl (6.0.0-1) unstable; urgency=high\n * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n   * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
@@ -529,6 +745,66 @@ match_changelog:
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n \n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n \n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n  \n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n  \n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n\t\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n\t\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n\t \n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n\t \n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n\t \n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n \t\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n \t\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n\n\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n\n\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
@@ -536,7 +812,7 @@ match_changelog:
     - 6.0.0-1
     - unstable
     - urgency=high
-    - "  * At last.\n"
+    - "  * At last.\n\n"
     - John Doe
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
@@ -560,7 +836,7 @@ match_changelog:
     - 6.0.0-1
     - unstable
     - urgency=high
-    - "  * At last.\n"
+    - "  * At last.\n \n"
     - John Doe
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
@@ -584,7 +860,7 @@ match_changelog:
     - 6.0.0-1
     - unstable
     - urgency=high
-    - "  * At last.\n"
+    - "  * At last.\n \n"
     - John Doe
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
@@ -608,7 +884,7 @@ match_changelog:
     - 6.0.0-1
     - unstable
     - urgency=high
-    - "  * At last.\n"
+    - "  * At last.\n  \n"
     - John Doe
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
@@ -620,7 +896,7 @@ match_changelog:
     - 6.0.0-1
     - unstable
     - urgency=high
-    - "  * At last.\n"
+    - "  * At last.\n \n"
     - John Doe
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
@@ -632,7 +908,7 @@ match_changelog:
     - 6.0.0-1
     - unstable
     - urgency=high
-    - "  * At last.\n"
+    - "  * At last.\n  \n"
     - John Doe
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
@@ -656,7 +932,7 @@ match_changelog:
     - 6.0.0-1
     - unstable
     - urgency=high
-    - "  * At last.\n"
+    - "  * At last.\n  \n"
     - John Doe
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
@@ -757,6 +1033,18 @@ match_changelog:
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n\tFollowup.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n\tFollowup.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n\tFollowup.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n  * Followup.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n  * Followup.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
@@ -805,6 +1093,18 @@ match_changelog:
     - doe@example.tld
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n\t\n  * Followup.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n\t\n  * Followup.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n\t\n  * Followup.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n   \n  * Followup.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n   \n  * Followup.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
@@ -830,22 +1130,34 @@ match_changelog:
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n-- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n\t-- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n  -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n   -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n - John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n - - John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n --  John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n --  John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John<Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
@@ -884,25 +1196,25 @@ match_changelog:
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John\nDoe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe  <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe (doe@example.tld)  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe<doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe\nexample.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe\n<doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <<doe@example.tld>>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - +
@@ -917,10 +1229,10 @@ match_changelog:
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld> Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu,01Apr201000:00:00+0300\n"
     - +
@@ -935,7 +1247,7 @@ match_changelog:
     - Thu,01Apr201000:00:00+0300
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>   Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu,  01  Apr  2010  00:00:00  +0300\n"
     - +
@@ -949,17 +1261,38 @@ match_changelog:
     - doe@example.tld
     - Thu,  01  Apr  2010  00:00:00  +0300
   -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300 \n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300 \n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 \n"
-    - -
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 \n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  , 01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, >01 Apr 2010 00:00:00 +0300\n"
-    - -
+    - '-'
   -
     - "libcompress-zlib-perl (2.015-1) unstable; urgency=low\n\n  * New upstream release\n  * Added myself as an uploader\n  * Adjust build-dependencies to match upstream versions\n\n -- Gunnar Wolf <gwolf@debian.org>  Thu, 11 Sep 2008 23:19:22 -0500\n"
     - +
@@ -972,4 +1305,69 @@ match_changelog:
     - Gunnar Wolf
     - gwolf@debian.org
     - Thu, 11 Sep 2008 23:19:22 -0500
-...
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300 (ABC)\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300 (ABC)\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300(ABC)\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300(ABC)\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300  (ABC)\n"
+    - +
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300  (ABC)\n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300 ()\n"
+    - '-'
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300()\n"
+    - '-'
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300 \n(ABC)\n"
+    - '-'
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300 \n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300
+  -
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300 \n()\n"
+    - '-'
+    - "perl (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300 \n"
+    - perl
+    - 6.0.0-1
+    - unstable
+    - urgency=high
+    - "  * At last.\n"
+    - John Doe
+    - doe@example.tld
+    - Thu, 01 Apr 2010 00:00:00 +0300

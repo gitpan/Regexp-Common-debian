@@ -1,73 +1,73 @@
 ---
 match_preferences:
   -
-    - 
-    - -
+    - ''
+    - '-'
   -
     - "Package:\n"
-    - -
+    - '-'
   -
     - "Package: *\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin:\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version 0\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version 0\nPin-Priority:\n"
-    - -
+    - '-'
   -
     - " Package: *\nPin: version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "*\nPin: version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "\nPin: version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Pin: version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Pin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "1\n"
-    - -
+    - '-'
   -
     - "Package: *Pin: version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version 0Pin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version 0\nPriority: 1\n"
-    - -
+    - '-'
   -
     - "Package: \nPin: version 0\nPriority: 1\n"
-    - -
+    - '-'
   -
     - "Package:\nPin: version 0\nPriority: 1\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version 0\nPin-Priority: 1\n"
     - +
     - "Package: *\nPin: version 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
@@ -75,7 +75,7 @@ match_preferences:
     - "package: *\npin: version 0\npin-priority: 1\n"
     - +
     - "package: *\npin: version 0\npin-priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
@@ -83,7 +83,7 @@ match_preferences:
     - "PACKAGE: *\nPIN: version 0\nPIN-PRIORITY: 1\n"
     - +
     - "PACKAGE: *\nPIN: version 0\nPIN-PRIORITY: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
@@ -105,7 +105,7 @@ match_preferences:
     - 1
   -
     - "Package: !@#\$\nPin: version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: abcdefghijklmnopqrstuvwxyz\nPin: version 0\nPin-Priority: 1\n"
     - +
@@ -132,12 +132,12 @@ match_preferences:
     - 1
   -
     - "Package: ABC\nPin: version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: * \nPin: version 0\nPin-Priority: 1\n"
     - +
     - "Package: * \nPin: version 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
@@ -145,13 +145,13 @@ match_preferences:
     - "Package:  *\nPin: version 0\nPin-Priority: 1\n"
     - +
     - "Package:  *\nPin: version 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
   -
     - "Package: foo\nbar\nPin version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: foo bar \nPin: version 0\nPin-Priority: 1\n"
     - +
@@ -180,30 +180,30 @@ match_preferences:
     - "Package:*\nPin: version 0\nPin-Priority: 1\n"
     - +
     - "Package:*\nPin: version 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
   -
     - "Package: * foo\nPin version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: foo *\nPin version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: *\n\nPin: version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin version \nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin version\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version a b\nPin-Priority: 1\n"
     - +
     - "Package: *\nPin: version a b\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - a b
     - 1
@@ -211,18 +211,18 @@ match_preferences:
     - "Package: *\nPin: version !@#$\nPin-Priority: 1\n"
     - +
     - "Package: *\nPin: version !@#$\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - '!@#$'
     - 1
   -
     - "Package: *\n Pin: version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version 0 \nPin-Priority: 1\n"
     - +
     - "Package: *\nPin: version 0 \nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
@@ -230,7 +230,7 @@ match_preferences:
     - "Package: *\nPin: version 0 1 \nPin-Priority: 1\n"
     - +
     - "Package: *\nPin: version 0 1 \nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0 1
     - 1
@@ -238,7 +238,7 @@ match_preferences:
     - "Package: *\nPin:version 0\nPin-Priority: 1\n"
     - +
     - "Package: *\nPin:version 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
@@ -246,7 +246,7 @@ match_preferences:
     - "Package: *\nPin: VERSION 0\nPin-Priority: 1\n"
     - +
     - "Package: *\nPin: VERSION 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - VERSION
     - 0
     - 1
@@ -254,7 +254,7 @@ match_preferences:
     - "Package: *\nPin: origin 0\nPin-Priority: 1\n"
     - +
     - "Package: *\nPin: origin 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - origin
     - 0
     - 1
@@ -262,7 +262,7 @@ match_preferences:
     - "Package: *\nPin: ORIGIN 0\nPin-Priority: 1\n"
     - +
     - "Package: *\nPin: ORIGIN 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - ORIGIN
     - 0
     - 1
@@ -270,7 +270,7 @@ match_preferences:
     - "Package: *\nPin: release 0\nPin-Priority: 1\n"
     - +
     - "Package: *\nPin: release 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - release
     - 0
     - 1
@@ -278,7 +278,7 @@ match_preferences:
     - "Package: *\nPin: RELEASE 0\nPin-Priority: 1\n"
     - +
     - "Package: *\nPin: RELEASE 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - RELEASE
     - 0
     - 1
@@ -286,18 +286,18 @@ match_preferences:
     - "Package: *\nPin: version \"\"\nPin-Priority: 1\n"
     - +
     - "Package: *\nPin: version \"\"\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - '""'
     - 1
   -
     - "Package: *\nPin: version 0\n Pin-Priority: 1\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version 0\nPin-Priority: +25\n"
     - +
     - "Package: *\nPin: version 0\nPin-Priority: +25\n"
-    - *
+    - '*'
     - version
     - 0
     - +25
@@ -305,24 +305,24 @@ match_preferences:
     - "Package: *\nPin: version 0\nPin-Priority: -25\n"
     - +
     - "Package: *\nPin: version 0\nPin-Priority: -25\n"
-    - *
+    - '*'
     - version
     - 0
     - -25
   -
     - "Package: *\nPin: version 0\nPin-Priority: +-25\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version 0\nPin-Priority: -+25\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version 0\nPin-Priority: =25\n"
-    - -
+    - '-'
   -
     - "Package: *\nPin: version 0\nPin-Priority: 25.35\n"
     - +
     - "Package: *\nPin: version 0\nPin-Priority: 25.35\n"
-    - *
+    - '*'
     - version
     - 0
     - 25
@@ -330,7 +330,7 @@ match_preferences:
     - "Package: *\nPin: version 0\nPin-Priority: 25.35.45\n"
     - +
     - "Package: *\nPin: version 0\nPin-Priority: 25.35.45\n"
-    - *
+    - '*'
     - version
     - 0
     - 25
@@ -338,7 +338,7 @@ match_preferences:
     - "Package: *\nPin: version 0\nPin-Priority:  1\n"
     - +
     - "Package: *\nPin: version 0\nPin-Priority:  1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
@@ -346,7 +346,7 @@ match_preferences:
     - "Package: *\nPin: version 0\nPin-Priority: 1 \n"
     - +
     - "Package: *\nPin: version 0\nPin-Priority: 1 \n"
-    - *
+    - '*'
     - version
     - 0
     - 1
@@ -354,7 +354,7 @@ match_preferences:
     - "Explanation: bwahah\nPackage: *\nPin: version 0\nPin-Priority: 1\n"
     - +
     - "Explanation: bwahah\nPackage: *\nPin: version 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
@@ -362,7 +362,7 @@ match_preferences:
     - "Explanation: z-z-z-z\nExplanation: bwahah\nPackage: *\nPin: version 0\nPin-Priority: 1\n"
     - +
     - "Explanation: z-z-z-z\nExplanation: bwahah\nPackage: *\nPin: version 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
@@ -370,7 +370,7 @@ match_preferences:
     - "Explanation:bwahah\nPackage: *\nPin: version 0\nPin-Priority: 1\n"
     - +
     - "Explanation:bwahah\nPackage: *\nPin: version 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
@@ -378,16 +378,15 @@ match_preferences:
     - "Explanation:\nPackage: *\nPin: version 0\nPin-Priority: 1\n"
     - +
     - "Explanation:\nPackage: *\nPin: version 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
   -
     - " Explanation: bwahah\nPackage: *\nPin: version 0\nPin-Priority: 1\n"
-    - -
+    - '-'
     - "Package: *\nPin: version 0\nPin-Priority: 1\n"
-    - *
+    - '*'
     - version
     - 0
     - 1
-...

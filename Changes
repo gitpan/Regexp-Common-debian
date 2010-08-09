@@ -1,3 +1,46 @@
+  v0.2.11 20100808
+
+      ~ $RE{debian}{version} (=45)
+          Support for versions with no leading number.
+
+      + $RE{debian}{archive}{source_3_0_native} (63)
+      + $RE{debian}{archive}{source_3_0_quilt} (110)
+      + $RE{debian}{archive}{patch_3_0_quilt} (71)
+          Support for filenames of "Format: 3.0".
+
+      + $RE{debian}{archive}{source_1_0} (+16 =59)
+      - $RE{debian}{archive}{source}
+          Follow up rename.  Support for versions with no leading
+          number.
+
+      + $RE{debian}{archive}{patch_1_0} (+13 =65)
+      - $RE{debian}{archive}{patch}
+          Follow up rename.  Support for versions with no leading
+          number.
+
+      ~ $RE{debian}{archive}{binary} (+9 =59)
+      ~ $RE{debian}{archive}{changes} (+7 =41)
+      ~ $RE{debian}{archive}{dsc} (+12 =62)
+          Support for versions with no leading number.
+
+      ~ $RE{debian}{changelog} (+30 =145)
+          Support for versions with no leading number.  Various fixes to
+          tolerate variations in emtpy lines, leading and separating
+          spaces.  Support for urgency comments.
+
+      ~ $RE{debian}{architecture} (+4 =20)
+          List of acceptable architectures has been updated.
+
+      ~ $RE{debian}{preferences} (-4 =70)
+      ~ $RE{debian}{sourceslist} (-4 =26)
+          Cosmetic changes.
+
+      % Test-suite support testing live-data from various sources
+      % Documentation fixes
+      = XXX scores 8
+      = TODO scores 12
+      = FIXME scores 13
+
   v0.1.5 20090311
 
       ~ $RE{debian}{changelog} (+34 =115)

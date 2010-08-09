@@ -14,31 +14,35 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 e245f94d7c96b1c8000c72db43342cce310fc26e Build.PL
-SHA1 cc7e301074fc31bfe69def08e04b0ed00b0dfa20 Changes
-SHA1 474051e14b354331faa9131685e92078daf07240 MANIFEST
-SHA1 34ec22ffec40f5458b82260fce78b990fea96edc META.yml
-SHA1 c178f7f185f6c0e2587498430d9085157996b58b README
-SHA1 42afa5ac5d325a66f506e79cb1a1621a238302ab lib/Regexp/Common/debian.pm
-SHA1 691fed2157cd95eb49db52296c4a810e1e95d66e t/TestSuite.pm
-SHA1 75f54d7c057ff21c4679bcf1a94d6b761acfc83e t/architecture.t
-SHA1 90e094ccf3c18264b9976ac7894b5860f749d3c4 t/architecture.yaml
-SHA1 b36c7d61397c8b7f8902747c71b75340c7b6b6f3 t/archive.t
-SHA1 37fce1c78b1357e47063f6dfc85be3be7bf89a6b t/archive.yaml
-SHA1 272030206a15aa077134549b96acf8efb293e310 t/changelog.t
-SHA1 ccf098a1afe6ed162f70d2bf41b5d2f23e75ae8f t/changelog.yaml
-SHA1 1dbfc28540b66ba1e5d927fe1a96c6814fd59e5c t/package.t
-SHA1 802b45458a5ee7011b3875a3df827c82e5e47833 t/package.yaml
-SHA1 a8e2c6fd0047adaa53fc72a7416e35a12dc9d466 t/preferences.t
-SHA1 62e4ba4d10e18cd6a16fc978e0a86e51085d0c9f t/preferences.yaml
-SHA1 e51a49c0629d9ece5daf23448a88b59fcbef055b t/sourceslist.t
-SHA1 7f689f75a626a64c9b90358dd271fa04699b7fad t/sourceslist.yaml
-SHA1 51d0a070bfa0b46f6f464523d8684c88ff689f23 t/version.t
-SHA1 5ae0aa2a00c370f78641799cb0befcb4847ca61b t/version.yaml
+SHA1 dfee61e6d7d96046123c5bc14dad20f9d6db00f3 Build.PL
+SHA1 0ec4d82b2715d882366b29ab14c4d344d865b6af Build.sh
+SHA1 21c34f4c63f87ff0e51f2455b432ed33aaacb2bd Changes
+SHA1 9f3e842a369cc487720f7f95087f7a319d63160f MANIFEST
+SHA1 86314bc30047a0ff4fbf0def5af7c5f40ccc776b META.yml
+SHA1 09a7018415951bebda125385a55cc5e32c337771 README
+SHA1 40f2837feba4c63e41aeba4e81e3232b2a5f195d Regexp-Common-debian-v0.2.10.tar.gz
+SHA1 532e5cec14abeb4b23848858a07b054fda9f9cb1 lib/Regexp/Common/debian.pm
+SHA1 d9ae7743052956939a2bce3587015419de30f7e8 t/TestSuite.pm
+SHA1 271e6b00d0f3f2b5a5c04f817377c20ec6e1e6bf t/architecture.t
+SHA1 9215593e60a2e3c67a3e43a16590ca1793081e0f t/architecture.yaml
+SHA1 b05bb566c03b2e1586599fa0a4dec8ee007bb407 t/archive.misc.t
+SHA1 cdb90c7b9348933beca8561c257797382c545183 t/archive.misc.yaml
+SHA1 8c0cee4357037b86665b854574b64cfa35b43882 t/archive.source.t
+SHA1 fd9c6e4a2d4e6a0e9c1d6ea015d94c59bf1f4b09 t/archive.source.yaml
+SHA1 ab578acfc2ea8148cb82ce7bc4b7f8855d1b3c08 t/changelog.t
+SHA1 b414e8df1c75b0d66c27d92ae24f068b1a877eb0 t/changelog.yaml
+SHA1 0cd00a1cebece470ee99cb537054b4dd2e422d7d t/package.t
+SHA1 e5c907cf8cae5b556b9b622ac32ddc5f88e11be7 t/package.yaml
+SHA1 9f49c0ceb79f024ffb22782cff017c283672a11c t/preferences.t
+SHA1 b7c048fab0ce16427475aa75e19958ee992d1e74 t/preferences.yaml
+SHA1 cb7d1c197867337aea993ac9541c6f0d57a78edf t/sourceslist.t
+SHA1 eacdb207a203117e251eda90ea10d76a3d25d48b t/sourceslist.yaml
+SHA1 c05df379c0f90051be4e79bad8490e89cc01773a t/version.t
+SHA1 00d738ff4afd04c5cdd39467c76e5741b67f6c96 t/version.yaml
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.9 (GNU/Linux)
 
-iD8DBQFJt/Tp1qsM9O+FbKQRAqVLAJ9wJYgKoya0P89Tjj8YOZjRJ/dMkgCeKBLe
-tB+FbN6MoL4PG9xIjJYo8nY=
-=ZbEU
+iD8DBQFMXvnp1qsM9O+FbKQRAintAKDFxaKgafPJTyGQAA6UPWgAAJo/XwCfQWyy
+jZynXRsXRzX4+5YWmXKUdFs=
+=QqT/
 -----END PGP SIGNATURE-----
