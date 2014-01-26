@@ -1,28 +1,29 @@
 ---
-name: Regexp-Common-debian
-version: v0.2.11
+abstract: 'regexps for Debian specific strings'
 author:
   - 'Eric Pozharski <whynot@cpan.org>'
-abstract: regexps for Debian specific strings
-license: lgpl
-resources:
-  license: http://opensource.org/licenses/lgpl-license.php
 build_requires:
-  File::Temp: ''
-  Test::Differences: ''
-  Test::More: ''
-  YAML::Syck: ''
-requires:
-  Regexp::Common: ''
-  perl: v5.6.0
-  version: 0.5
+  File::Temp: 0
+  Test::Differences: 0.6
+  Test::More: 0
+  YAML::Syck: 0
 configure_requires:
-  Module::Build: 0.340201
-provides:
-  Regexp::Common::debian:
-    file: lib/Regexp/Common/debian.pm
-    version: v0.2.11
-generated_by: Module::Build version 0.340201
+  Module::Build: 0.38
+dynamic_config: 1
+generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.110440'
+license: lgpl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
+name: Regexp-Common-debian
+provides:
+  Regexp::Common::debian:
+    file: lib/Regexp/Common/debian.pm
+    version: v0.2.12
+requires:
+  Regexp::Common: 0
+  perl: v5.10.0
+  version: 0.5
+resources:
+  license: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
+version: v0.2.12

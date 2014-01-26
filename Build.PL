@@ -1,26 +1,38 @@
 #!/usr/bin/perl
-# $Id: Build.PL 395 2010-08-08 18:39:27Z whynot $
+# $Id: Build.PL 489 2014-01-16 22:50:27Z whynot $
 
 package main;
 use strict;
 use warnings;
 
-use version 0.50; our $VERSION = qv q|0.2.12|;
+use version 0.50; our $VERSION = qv q|0.2.13|;
 
-use Module::Build 0.20;
+use Module::Build 0.38;
 
 =head1 OVERVIEW
 
 The B<Regexp::Common::debian> is collection of REs for various strings found in
-the Debian Porject E<lt>L<http:E<sol>E<sol>debian.org>E<gt>.
+the Debian Porject <http://debian.org>.
 It's no way intended to be a validation tool.
 
-Since B<Regexp::Common::debian> uses B<our> declaration that was introduced in
-C<v5.6.0>, B<R::C::d> needs C<v5.6.0> to run.
-I should admit though, I'll do my best to support perl distributed with
-C<stable> release of Debian GNU/Linux
-(at time of writing it is C<v5.10.0>).
-And I'll try hard to support perl in C<oldstable> (C<v5.8.8>).
+B<R::C::d> needs perl C<v5.10.0> or later because:
+
+=over
+
+=item *
+
+4 patterns (29%) make use of decent perls
+(one doesn't make it through with anything older);
+
+=item *
+
+It's time to move, C<v5.10.0> is six year old and three years no-support;
+
+=item *
+
+C<lenny> is four year old and a year no-support;
+
+=back
 
 =head1 INSTALL
 
@@ -97,8 +109,8 @@ but omissions won't stay unnoted anymore.
 
 C<v0.2.3>
 Inspects all records in F</var/lib/apt/lists/*_Packages>, extracts I<Filename:>
-entries matches all of them against
-C<mE<sol>^$RE{debian}{archive}{binary}$E<sol>>.
+entries and matches all of them against
+C<m/^$RE{debian}{archive}{binary}$/>.
 All (if any) failure will be reported at the end.
 
 =item B<changelog> of F<t/changelog.t>
@@ -120,6 +132,13 @@ C<loadavg> climbs over 1.50..2.00
 You've got the picture.
 Although that's where choice begins.
 
+C<v0.2.12>
+That happens that C<urgency=high>, probably when it's that really high, is
+expressed in blocks (like this: C<urgency=HIGH>).
+B<$RE{d}{changelog}> is case-keeping, and then B<dpkg-parsechangelog(1)>
+strikes back and lowercase.
+From now on such manipulations won't fail a particular entry.
+
 =over
 
 =item I<changelog>
@@ -136,20 +155,19 @@ The package name is picked from directory name.
 
 =item I<changelog=a>
 
-Only those changelogs will be checked that C<mZ<>E<sol>^aZ<>E<sol>>.
+Only those changelogs will be checked that C<m/^a/>.
 
 =item I<changelog=5>
 
 C<v0.2.9>
 That will check all changelogs, although it will look no more than requested
-number of entries.
-(~15min for ~1200 changelogs
-(and that's with I<APT::Install-Recommends> disabled).)
+number of entries deep.
+(C<v0.2.9>: ~15min for ~1200 changelogs;
+C<v0.2.12>: ~30min for ~1300 changelogs and ~6000 subchecks.)
 And that has a perfect sense.
 Do you know that C<cron> once changed it's name to C<Cron>
 (beware leading block) (cron_3.0pl1-46)?
 C'mon, it has happened 12 (tweleve) years ago!
-I can't degrade B<$RE{d}{changelog}> to accommodate that.
 (And you know what?
 That default is pretty fair (liblog-log4perl-perl_1.16-1).
 Probably it should look for time passed but entry number.)
@@ -163,7 +181,16 @@ B<$RE{d}{changelog}> finds out more entries than B<dpkg-parsechangelog>
 (C<dpkg_1.2.13> vs C<dpkg_0.93.79>),
 but if the offending record is more than that far from top then it's reported
 and otherwise ignored.
-(~3h for ~1200 packages, ~45000 successful subchecks.)
+(C<v0.2.9>: ~3h for ~1200 packages, ~45000 successful subchecks;
+C<v0.2.12>: ~5¼h for ~1300 changelogs, ~63000 successful subchecks.)
+
+=item I<changelog=_5>
+
+C<v0.2.12>
+That's a mix of I<changelog=5> and I<changelog=-5>
+(thanks to irda-utils_0.9.18-8.1 and mime-support_3.49-1).
+It goes no more than configured entries deep and ignores (and reports) any
+errors.
 
 =item I<changelog=0>
 
@@ -178,7 +205,7 @@ F<t/changelog.t> will give up pretty soon.)
 
 =back
 
-To slightly sweeten all that, F<tZ<>E<sol>changelog.t> attempts to filter
+To slightly sweeten all that, F<t/changelog.t> attempts to filter
 duplicates.
 And it B<BAIL_OUT>s upon first failure.
 
@@ -187,7 +214,7 @@ And it B<BAIL_OUT>s upon first failure.
 C<v0.2.10>
 Nothing special.
 Output of C<dpkg-query -f '${Package}\n' -W> is matched against
-B<mZ<>E<sol>^$RE{debian}{package}$E<sol>>.
+B<m/^$RE{debian}{package}$/>.
 Probably should parse F<*_Packagees>.
 
 =item B<source> of F<t/archive.source.t>
@@ -196,24 +223,24 @@ C<v0.2.3>
 Inspects all records in F</var/lib/apt/lists/*_Sources>, extracts I<Files:>
 entries, then collects trailing filenames.
 They are matched against
-C<mE<sol>^$RE{debian}{archive}{source_1_0}$E<sol>>,
-C<mE<sol>^$RE{debian}{archive}{patch_1_0}$E<sol>>,
-C<mE<sol>^$RE{debian}{archive}{source_3_0_native}$E<sol>>,
-C<mE<sol>^$RE{debian}{archive}{source_3_0_quilt}$E<sol>>,
-C<mE<sol>^$RE{debian}{archive}{patch_3_0_quilt}$E<sol>>,
+C<m/^$RE{debian}{archive}{source_1_0}$/>,
+C<m/^$RE{debian}{archive}{patch_1_0}$/>,
+C<m/^$RE{debian}{archive}{source_3_0_native}$/>,
+C<m/^$RE{debian}{archive}{source_3_0_quilt}$/>,
+C<m/^$RE{debian}{archive}{patch_3_0_quilt}$/>,
 and
-C<mE<sol>^$RE{debian}{archive}{dsc}$E<sol>>
-(in fact C<E<verbar>E<verbar>>).
+C<m/^$RE{debian}{archive}{dsc}$/>
+(in fact C<||>).
 If none matches then it will be reported at the end.
-C<mE<sol>$RE{debian}{archive}{changes}E<sol>> is missing here because there is
-no source of such on build undedicated system.
+C<m/$RE{debian}{archive}{changes}/> is missing here because there is
+no source of such on no-build system.
 
 =item B<version> of F<t/version.t>
 
 C<v0.2.10>
 Again nothing special.
 Output of C<dpkg-query -f '${Version}\n' -W> is matched against
-B<mZ<>E<sol>^$RE{debian}{version}$E<sol>>.
+B<m/^$RE{debian}{version}$/>.
 Probably should parse F<*_Packages> too.
 
 =back
@@ -222,42 +249,32 @@ If any test string fails I need to know what and how.
 To provide that info I've picked B<Test::Differences>
 (maybe there's other option I'm not aware of?)
 (I'm, B<Test::Deep>).
-(Surely I could go one of fail-proof ways described in B<T::D> pod;
-and what if something goes wrong?
-let's no play stupid hope -- I must know what happened.)
-(After looking at number of C<UNKNOWN> results from CPAN-Testers -- I think, I
-should.)
-That yeilds a big problem.
-B<T::D> has two (actually one) open bugs --
-B<[38320@rt.cpan.org]> and B<[41241@rt.cpan.org]> --
-at time of writing they are still open, no maintainer responce, patch is
-provided.
-Some test strings of B<R::C::d> give C<undef> as predicted result.
-That will provide a lots of "use of undef" warnings (really, a lots of).
-And as a matter of fact, B<T::D> will be somewhat useles -- forgive me, let me
-figure out version relations first.
+C<v0.60> of B<T::D> closes
+B<[38320@rt.cpan.org]> and B<[41241@rt.cpan.org]>.
 
 =cut
 
 my $engine = Module::Build->new(
-  module_name       =>                 q|Regexp::Common::debian|,
-  dist_author       =>       q|Eric Pozharski <whynot@cpan.org>|,
-  license           =>                                   q|lgpl|,
-  sign              =>                                         1,
-  requires          => {
-    q|perl|           => q|5.6.0|,
-    q|version|        =>     0.50,
-    q|Regexp::Common| =>       ''                              },
-  build_requires    => {
-    q|File::Temp|        => '',
-    q|Test::Differences| => '',
-    q|Test::More|        => ''                                 },
-  PL_files          => {
-    ( -f q|README.PL|  ? ( q|README.PL|  =>  q|README| ) : ()),
+  module_name        =>                q|Regexp::Common::debian|,
+  dist_author        =>      q|Eric Pozharski <whynot@cpan.org>|,
+  license            =>                                  q|lgpl|,
+  sign               =>                                        1,
+  requires           =>
+  { q|perl|   =>  q|5.10.0|,
+    q|version|    =>   0.50,
+    q|Regexp::Common| => ''                                    },
+  build_requires     =>
+  { q|File::Temp|        =>   '',
+    q|Test::Differences| => 0.60,
+    q|Test::More|        =>   ''                               },
+  configure_requires => {             q|Module::Build| => 0.38 },
+  PL_files           =>
+  { ( -f q|README.PL|  ? ( q|README.PL|  =>  q|README| ) : ()),
     ( -f q|Changes.PL| ? ( q|Changes.PL| => q|Changes| ) : ()) },
-  add_to_cleanup    => [ qw| *.tmp *.bak foo.* |,
+  add_to_cleanup     =>
+  [ qw|              *.tmp *.bak skip_* |,
     ( -f q|README.PL|  ? q|README|  : ()),
-    ( -f q|Changes.PL| ? q|Changes| : ())                      ]);
+    ( -f q|Changes.PL| ? q|Changes| : ())                      ] );
 
 my $y_choice = qx|perl -Mt::TestSuite -we 't::TestSuite::RCD_show_y_choice'|;
 chomp $y_choice;
@@ -267,23 +284,13 @@ $engine->create_build_script();
 
 =head1 AVAILABILITY
 
-=over
-
-=item pure distribution
-
-    http://search.cpan.org/dist/Regexp-Common-debian/
-
-=back
+Distribution --
+L<http://search.cpan.org/dist/Regexp-Common-debian/>
 
 =head1 BUGS
 
-=over
-
-=item please report here
-
-    http://rt.cpan.org/Public/Dist/Display.html?Name=Regexp-Common-debian
-
-=back
+Please report here --
+L<http://rt.cpan.org/Public/Dist/Display.html?Name=Regexp-Common-debian>
 
 =head1 COPYRIGHT AND LICENSING
 
@@ -291,7 +298,7 @@ $engine->create_build_script();
 
 =item *
 
-Copyright 2008--2010 Eric Pozharski E<lt>whynot@cpan.orgZ<>E<gt>
+Copyright 2008--2010, 2014 Eric Pozharski <whynot@cpan.org>
 
 =item *
 
@@ -300,6 +307,6 @@ AS-IS, NO-WARRANTY, HOPE-TO-BE-USEFUL
 =item *
 
 GNU Lesser General Public License v3
-E<lt>L<http:E<sol>E<sol>www.gnu.orgZ<>E<sol>licensesZ<>E<sol>lgpl.txt>E<gt>
+L<http://www.gnu.org/licenses/lgpl.txt>
 
 =back

@@ -1,25 +1,24 @@
 #!/usr/bin/perl
-# $Id: archive.source.t 391 2010-08-04 10:50:16Z whynot $
+# $Id: archive.source.t 489 2014-01-16 22:50:27Z whynot $
 
-package main;
 use strict;
 use warnings;
-use version 0.50; our $VERSION = qv q|0.2.5|;
+package main;
+
+use version 0.50; our $VERSION = qv q|0.2.6|;
 
 use t::TestSuite   qw| RCD_process_patterns |;
-use Regexp::Common qw|
-  debian
-  RE_debian_archive_source_1_0
-  RE_debian_archive_source_3_0_native
-  RE_debian_archive_source_3_0_quilt
-  RE_debian_archive_patch_1_0
-  RE_debian_archive_patch_3_0_quilt         |;
+use Regexp::Common
+qw| debian     RE_debian_archive_source_1_0
+        RE_debian_archive_source_3_0_native
+         RE_debian_archive_source_3_0_quilt
+                RE_debian_archive_patch_1_0
+          RE_debian_archive_patch_3_0_quilt |;
 use Test::More;
 
 my %askdebian;
-if(
-  $ENV{RCD_ASK_DEBIAN} &&
- ($ENV{RCD_ASK_DEBIAN} eq q|all| ||
+if(                    $ENV{RCD_ASK_DEBIAN} &&
+         ($ENV{RCD_ASK_DEBIAN} eq q|all| ||
   $ENV{RCD_ASK_DEBIAN} =~ m{\bsource\b}) )                      {
     local $/ = '';
     my $lists = q|/var/lib/apt/lists|;
@@ -31,7 +30,7 @@ if(
         $fn =~ m{.*_Sources$}                                         or next;
         open my $fh, q|<|, qq|$lists/$fn|;
         while( my $record = <$fh> )                           {
-            $record =~ m{\nFiles:\n((?:\s+[^\n]+\n)+)}s                     or
+            $record =~ m{\nFiles:\h*\n((?:\s+[^\n]+\n)+)}s                  or
               die
                 qq|(ASK_DEBIAN) was requested, however that record\n\n| .
                 qq|${record}has no (Files:) line|;
@@ -50,8 +49,7 @@ plan tests =>
 my $pat = q|abc_012.orig.tar.gz|;
 ok $pat =~ m|$RE{debian}{archive}{source_1_0}|,
   q|/$RE{debian}{archive}{source_1_0}/ matches|;
-ok $pat =~ RE_debian_archive_source_1_0(),
-  q|RE_debian_archive_source_1_0() .|;
+ok $pat =~ RE_debian_archive_source_1_0, q|RE_debian_archive_source_1_0() .|;
 my $re = $RE{debian}{archive}{source_1_0};
 ok $pat =~ m|$re|, q|$re = $RE{debian}{archive}{source_1_0} .|;
 ok $RE{debian}{archive}{source_1_0}->matches( $pat ),
@@ -59,14 +57,14 @@ ok $RE{debian}{archive}{source_1_0}->matches( $pat ),
 diag q|finished (main::base_source_1_0)|            if $t::TestSuite::Verbose;
 
 RCD_process_patterns(
-  patterns =>                 $patterns{match_source_1_0},
-  re_m     =>      qr|^$RE{debian}{archive}{source_1_0}$|,
-  re_g     => qr|$RE{debian}{archive}{source_1_0}{-keep}| );
+  patterns       =>       $patterns{match_source_1_0},
+  re_m    =>   qr|^$RE{debian}{archive}{source_1_0}$|,
+  re_g => qr|$RE{debian}{archive}{source_1_0}{-keep}| );
 
 $pat = q|abc_012.tar.bz2|;
 ok $pat =~ m|$RE{debian}{archive}{source_3_0_native}|,
   q|/$RE{debian}{archive}{source_3_0_native}/ matches|;
-ok $pat =~ RE_debian_archive_source_3_0_native(),
+ok $pat =~ RE_debian_archive_source_3_0_native,
   q|RE_debian_archive_source_3_0_native() .|;
 $re = $RE{debian}{archive}{source_3_0_native};
 ok $pat =~ m|$re|, q|$re = $RE{debian}{archive}{source_3_0_native} .|;
@@ -75,14 +73,14 @@ ok $RE{debian}{archive}{source_3_0_native}->matches( $pat ),
 diag q|finished (main::base_source_3_0_native)|     if $t::TestSuite::Verbose;
 
 RCD_process_patterns(
-  patterns =>                 $patterns{match_source_3_0_native},
-  re_m     =>      qr|^$RE{debian}{archive}{source_3_0_native}$|,
-  re_g     => qr|$RE{debian}{archive}{source_3_0_native}{-keep}| );
+  patterns       =>       $patterns{match_source_3_0_native},
+  re_m   =>    qr|^$RE{debian}{archive}{source_3_0_native}$|,
+  re_g => qr|$RE{debian}{archive}{source_3_0_native}{-keep}| );
 
 $pat = q|abc_012.orig.tar.bz2|;
 ok $pat =~ m|$RE{debian}{archive}{source_3_0_quilt}|,
   q|/$RE{debian}{archive}{source_3_0_quilt}/ matches|;
-ok $pat =~ RE_debian_archive_source_3_0_quilt(),
+ok $pat =~ RE_debian_archive_source_3_0_quilt,
   q|RE_debian_archive_source_3_0_quilt() .|;
 $re = $RE{debian}{archive}{source_3_0_quilt};
 ok $pat =~ m|$re|, q|$re = $RE{debian}{archive}{source_3_0_quilt} .|;
@@ -91,14 +89,14 @@ ok $RE{debian}{archive}{source_3_0_quilt}->matches( $pat ),
 diag q|finished (main::base_source_3_0_quilt)|      if $t::TestSuite::Verbose;
 
 RCD_process_patterns(
-  patterns =>                 $patterns{match_source_3_0_quilt},
-  re_m     =>      qr|^$RE{debian}{archive}{source_3_0_quilt}$|,
-  re_g     => qr|$RE{debian}{archive}{source_3_0_quilt}{-keep}| );
+  patterns       =>       $patterns{match_source_3_0_quilt},
+  re_m   =>    qr|^$RE{debian}{archive}{source_3_0_quilt}$|,
+  re_g => qr|$RE{debian}{archive}{source_3_0_quilt}{-keep}| );
 
 $pat = q|abc_012-34.diff.gz|;
 ok $pat =~ m|$RE{debian}{archive}{patch_1_0}|,
   q|/$RE{debian}{archive}{patch_1_0}/ matches|;
-ok $pat =~ RE_debian_archive_patch_1_0(), q|RE_debian_archive_patch_1_0() .|;
+ok $pat =~ RE_debian_archive_patch_1_0, q|RE_debian_archive_patch_1_0() .|;
 $re = $RE{debian}{archive}{patch_1_0};
 ok $pat =~ m|$re|, q|$re = $RE{debian}{archive}{patch_1_0} .|;
 ok $RE{debian}{archive}{patch_1_0}->matches( $pat ),
@@ -106,14 +104,14 @@ ok $RE{debian}{archive}{patch_1_0}->matches( $pat ),
 diag q|finished (main::base_patch_1_0)|             if $t::TestSuite::Verbose;
 
 RCD_process_patterns(
-  patterns =>                 $patterns{match_patch_1_0},
-  re_m     =>      qr|^$RE{debian}{archive}{patch_1_0}$|,
-  re_g     => qr|$RE{debian}{archive}{patch_1_0}{-keep}| );
+  patterns       =>       $patterns{match_patch_1_0},
+  re_m    =>   qr|^$RE{debian}{archive}{patch_1_0}$|,
+  re_g => qr|$RE{debian}{archive}{patch_1_0}{-keep}| );
 
 $pat = q|abc_012-34.debian.tar.gz|;
 ok $pat =~ m|$RE{debian}{archive}{patch_3_0_quilt}|,
   q|/$RE{debian}{archive}{patch_3_0_quilt}/ matches|;
-ok $pat =~ RE_debian_archive_patch_3_0_quilt(),
+ok $pat =~ RE_debian_archive_patch_3_0_quilt,
   q|RE_debian_archive_patch_3_0_quilt() .|;
 $re = $RE{debian}{archive}{patch_3_0_quilt};
 ok $pat =~ m|$re|, q|$re = $RE{debian}{archive}{patch_3_0_quilt} .|;
@@ -122,14 +120,13 @@ ok $RE{debian}{archive}{patch_3_0_quilt}->matches( $pat ),
 diag q|finished (main::base_patch_3_0_quilt)|       if $t::TestSuite::Verbose;
 
 RCD_process_patterns(
-  patterns =>                 $patterns{match_patch_3_0_quilt},
-  re_m     =>      qr|^$RE{debian}{archive}{patch_3_0_quilt}$|,
-  re_g     => qr|$RE{debian}{archive}{patch_3_0_quilt}{-keep}| );
+  patterns       =>       $patterns{match_patch_3_0_quilt},
+  re_m    =>   qr|^$RE{debian}{archive}{patch_3_0_quilt}$|,
+  re_g => qr|$RE{debian}{archive}{patch_3_0_quilt}{-keep}| );
 
 my @report;
 if( %askdebian )             {
-    ok
-        m[^$RE{debian}{archive}{source_1_0}$]        ||
+    ok  m[^$RE{debian}{archive}{source_1_0}$]        ||
         m[^$RE{debian}{archive}{patch_1_0}$]         ||
         m[^$RE{debian}{archive}{source_3_0_native}$] ||
         m[^$RE{debian}{archive}{source_3_0_quilt}$]  ||

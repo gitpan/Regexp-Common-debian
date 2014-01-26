@@ -1,10 +1,13 @@
-# $Id: debian.pm 395 2010-08-08 18:39:27Z whynot $
+# $Id: debian.pm 489 2014-01-16 22:50:27Z whynot $
+# Copyright 2008--2010, 2014 Eric Pozharski <whynot@pozharski.name>
+# GNU LGPLv3
+# AS-IS, NO-WARRANTY, HOPE-TO-BE-USEFUL
 
-package Regexp::Common::debian;
 use strict;
 use warnings;
+package Regexp::Common::debian;
 
-use version 0.50; our $VERSION = qv q|0.2.11|;
+use version 0.50; our $VERSION = qv q|0.2.12|;
 
 =head1 NAME
 
@@ -25,21 +28,10 @@ use Regexp::Common qw| no_defaults pattern |;
 Debian GNU/Linux as a management system validates, parses, and generates a lots
 of data.
 For sake of some other project I've needed some kind of parser.
-Part of Debian package management system, namely it's generating part --
-B<dpkg-deb>, is written in Perl, but...
-The API is provided in source-code form -- no docs, no plans, we are unstable.
-What morons.
-I've needed something I could depend on.
-I'm not about code, I'm about API.
+And, at time of starting, there're reasons to go myself.
+Those reasons are moot now but here we are.
 
-So I've gone myself.
-I believe, that Perl-way of doing such things is packing re-used and intented
-for re-use in module.
-And if such module is made anyway, why I shouldn't share it?
-(hmm, I've already told that someone...)
-So here we are -- B<Regexp::Common::debian> (applauses, thanks, thanks).
-
-When choosing API I would provide I had an option -- 
+When choosing API I had an option -- 
 
 =over
 
@@ -90,6 +82,8 @@ F<README> has more.
 
 =over
 
+=cut
+
 =item B<$RE{debian}{package}>
 
     'the-very.strange.package+name' =~ $RE{debian}{package}{-keep};
@@ -107,7 +101,9 @@ Rules are described in S<Section 5.6.7> of Debian policy.
 =cut
 
 # TODO:20100726182406:whynot: Force casefulnes.
-# CHECK:20100726182443:whynot: B<debian-policy>, version 3.8.2.0, 5.6.7
+# TODO:201312301927:whynot: Pass test data through B<Dpkg::Package>.
+# CHECK:201312301705:whynot: B<debian-policy>, version 3.9.3.1, 5.6.1 5.6.7
+# CHECK:201312301842:whynot: B<Dpkg::Package>, version 1.16.10, 0.01
 
 pattern
   name   => [ qw| debian package | ],
@@ -122,7 +118,7 @@ pattern
 
 This is Debian B<version>.
 Rules are described in S<Section 5.6.12> of Debian policy.
-I<$3> and I<$4> are implicitly caseles (as required).
+I<upstream_epoch> and I<debian_revision> are implicitly caseles (as required).
 
 =over
 
@@ -133,15 +129,16 @@ I<$3> and I<$4> are implicitly caseles (as required).
 if any.
 Oterwise -- C<undef>.
 Debian policy requires defaulting here to C<0>.
-However B<Perl> disallows assignment special variables C<$[1-9][0-9]*>.
-So if you have I<$2> to be C<undef> then assume here C<0>.
+However B<Perl> disallows assigning special variables C<$[1-9][0-9]*>
+(they are read-only, L<< perlvar|perlvar/"$<digits> ($1, $2, ...)" >> has more).
+So if you have I<epoch> to be C<undef> then assume here C<0>.
 
 =item I<$3> is an I<upstream_version>
 
 If there's no way to match I<upstream_version> than the whole pattern fails.
 
 B<(caveat)>
-A string like C<0--1> will end up with I<$3> set to weird C<0->
+A string like C<0--1> will end up with I<upstream_version> set to weird C<0->
 (hopefully, Debian won't degrade to such versions; though YMMV).
 
 B<(caveat)>
@@ -165,11 +162,13 @@ Nobody cares.
 =item I<$4> is a I<debian_revision>
 
 B<(bug)>
-C<0-1-> will end up with I<$3> set to C<0> and I<$4> set to C<1> (such trailing
-hyphens will be missing in I<$1>).
-C<0-> will end up with I<$4> C<undef>ed.
-And the same (as with I<$2>) -- omitted I<debian_revision> defaults to C<0>;
-I<$4> can't.
+C<0-1-> will end up with I<upstream_version> set to C<0> and
+I<debian_revision> set to C<1> (such trailing hyphens will be missing in
+I<debian_version>).
+C<0-> will end up with I<debian_resion> C<undef>ed.
+And the same (as with I<epoch>) -- omitted I<debian_revision> defaults to
+C<0>;
+I<debian_revision> can't.
 
 B<(caveat)>
 The I<debian_revision> is allowed to start with non-digit.
@@ -177,18 +176,8 @@ This's solely my reading of Debian Policy.
 
 =back
 
-B<(bug)>
-Either I don't perlre or I didn't tried hard enough.
-Anyway, I haven't found a way to parse Debian version the way B<R::C> requires
-in
-context of B<perl5.8.8> (perl in stable, going to be oldstable)
-(B<perl5.10.0> isn't old-stable yet).
-C<qr/(?|)/> saved B<perl5.10.0> (but see
-B<"R_C_d_version()">).
-
 =cut
 
-# XXX: perl5.8.8 misses C<qr/(?|)/>.
 # XXX: perl5.10.0 misses C<qr/(?=[$magic-]+)/>.
 # XXX: qr/(?{ m,[$magic-]+, })/ segfaults.
 # XXX: implicit anchoring must be avoided (as if it would help).
@@ -196,9 +185,13 @@ B<"R_C_d_version()">).
 # XXX: C<qr/(??{})/> requires C<use re qw eval ;> inside(?) R::C.
 # FIXME: C<q|0-1-|> should fail, but C<(q|0-1-|, undef, 0, 1)>.
 # FIXME: C<q|0-|> should fail, but C<(q|0-|, undef, 0, undef)>.
+# TODO:201312301955:whynot: Pass test data through B<Dpkg::Version>.
 # TODO: Hmm, C<dpkg --compare-versions> compares C<q|0-|>; and what's I<debian_revision> then?
 # TODO:20100808185830:whynot: It does compares C<q|-|>, it doesn't C<q|:|> though.
-# CHECK:20100726185500:whynot: B<debian-policy>, version 3.8.2.0, 5.6.12
+# TODO:201312301955:whynot: Now that's weird.  C<q|0-|> is more then C<q|0-0|>, but less then C<q|0-1|>.
+# TODO:201312302004:whynot: Totally weird.  Space is some special tilde that's more then C<0> and less then enything else.
+# CHECK:201312301854:whynot: B<debian-policy>, version 3.9.3.1, 5.6.12
+# CHECK:201312301916:whynot: B<Dpkg::Version>, version 1.16.10, 1.00
 
 my $anMagic = q|0-9A-Za-z|;
 my $spMagic = q|.+~|;
@@ -233,70 +226,33 @@ pattern
                   $6 && !$8 or die;
 
 That's a workaround for B<perl5.8.8>
-(read L<"$RE{debian}{version}"> (look for B<(bug)>)).
-Look for B<(caveat)> in L<"$RE{debian}{version}"> -- those apply here too.
-
-=over
-
-=item I<$1> is I<debian_version> again
-
-=item I<$2> is I<epoch> always
-
-=item Either I<$3>, or I<$5>, or I<$6>, or I<$8> is I<upstream_version>
-
-B<(note)>
-Because B<R_C_d_version()> is going to be dropped soon it wasn't updated to
-allow non-digit as a leading character.
-
-=item Either I<$4> or I<$7> is I<debian_revision>
-
-=back
-
-That's the best what can be done with RE
-(in real world it's done functional way).
-Sorry.
-
-B<(bug)>
-It always grabs (should be configurable with setting like I<-keep>).
-OTOH, look, within 2year
-(or so)
-(as soon as B<perl5.10.0> would be oldstable)
-that dirty piece will be dropped anyway.
-
-B<(note)>
-B<R_C_d_version()> is unexported function because that follows
-B<Regexp::Common>'s
-way of providing regexps --
-each time you've got a new C<qr//>,
-but reference.
-It's unexported for obvious reason.
+As of C<v0.2.12> it's gone.
 
 =cut
-
-# TODO:20100726190807:whynot: As of http://www.debian.org/News/2010/20100121 C<etch> is discontinued completely;  As of 20090215, C<etch> is RIP;  Please, drop B<R_C_d_version()>.
-# CHECK:20100726191205:whynot: C<lenny> isn't C<old-stable> yet.
-
-sub R_C_d_version () {
-    return qr{
-    ((?:([0-9]+):)?(?:
-      (?<=[0-9]:)([0-9][$Magic:-]*)+-([$Magic:]+)|
-      (?<=[0-9]:)([0-9][$Magic:]*)|
-      (?<![0-9]:)([0-9][$Magic-]*)+-([$Magic]+)|
-      (?<![0-9]:)([0-9][$Magic]*)
-    )(?![$Magic]))}x; };
 
 =item B<$RE{debian}{architecture}>
 
     $arch =~ $RE{debian}{architecture}{-keep};
     $2 && ($3 ||  $4)           and die;
            $3 && !$4            and die;
-           $3 &&  $4 eq 'armel' and die;
     $2 and print "that's special: $2";
     $3 and print "OS is: $3";
-    $4 and print "arch is: $4";
+    $4 and print "CPU is: $4";
 
 This is Debian B<architecture>.
 Rules are described in I<Section 5.6.8> of Debian policy.
+
+C<v0.2.12>
+At time of writing:
+only C<linux> I<os> is present for any I<cpu>;
+only C<m68k> I<cpu> is present for any I<os>;
+reality had been more straightforward before.
+Thus giving up on semantics.
+Anything that comprises somehow known I<os> can go on left.
+Anything that comprises somehow known I<cpu> can go on right.
+C<any> wildcard can take over either I<os> or I<cpu>
+(B<(bug)> or both of them (C<any-any> is parsed as correct architecture)).
+Neither lowercase, nor digit, nor hyphen can touch a prospect on outside.
 
 =over
 
@@ -305,22 +261,26 @@ Rules are described in I<Section 5.6.8> of Debian policy.
 =item I<$2> is any I<special>
 
 Distinguishing special architectures (C<all>, C<any>, and C<source>) and
-I<os>-I<arch> pairs is arguable.
+I<os>-I<cpu> pairs is arguable.
 But I've decided that would be good to separate C<all> and e.g. C<i386>
 (what in turn is actually C<linux-i386>).
 
 =item I<$3> is I<os>
 
-When C<!$3 && $4> is true then unZ<>B<defined> I<$3> actually means C<linux>.
+When C<!$3 && $4> is true then unZ<>B<defined> I<os> actually means C<linux>.
 Since I<$digit>s are read-only yielding here anything but C<undef> is
 impossible.
 More on that in I<Section 11.1> of Debian policy.
 
-=item I<$4> is I<arch>
+=item I<$4> is I<cpu>
 
-Please note that there are architectures which are present only for C<linux>
-I<os>
-(namely C<armel> and C<lpia>, at time of writing).
+B<(note)>
+Ocassionally, various sources talk about B<arch> while meaning B<cpu>
+component of B<architecure>.
+Looks like B<architecture> is always I<os>-I<cpu> pair.
+Probably that B<arch>/B<architecture> mess is with us from the beginning.
+B<(bug)>
+In this docu happens too.
 
 =back
 
@@ -333,27 +293,66 @@ Hopefully, that wouldn't stay unnoticed too long.
 
 =cut
 
-# CHECK:20100730202505:whynot: B<debian-policy>, version 3.8.2.0, 5.6.8 and 11.1
-# CHECK:20100730202514:whynot: L<dpkg-architecture(1)>, version 1.15.2
+# FIXME:201401032249:whynot: Architecture mess should be fiexd.
+# CHECK:201401022120:whynot: B<debian-policy>, version 3.9.3.1, 5.6.8 and 11.1
+# CHECK:201401030018:whynot: L<dpkg-architecture(1)>, version 1.16.10
 
-my $Arches  = 
-  q{alpha|amd64|armeb|arm|avr32|hppa|i386|ia64|m32r|m68k|mipsel|mips|} .
-  q{powerpc|ppc64|s390x|s390|sh3eb|sh3|sh4eb|sh4|sparc};
-my $xArches = q{armel|lpia};
-my $Oses    =
-  q{darwin|freebsd|hurd|kfreebsd|kopensolaris|knetbsd|netbsd|openbsd|solaris};
+# (          bsd) -> ( B) (darwi)  ->  (darwin)
+# (          net) -> ( N) (sol)    -> (solaris)
+# (         free) -> ( F) (solari) -> (solaris)
+# (         open) -> ( O) (uclin)  -> (uclinux)
+# (       -sparc) -> (-S)
+# (     -powerpc) -> (-P)
+# (^uclibc-linux) -> (UL)
+#       FB NB OB UL darwi hurd kFB kNB kOsol linux mint solar uclin
+#     P  X  X  X  X   X    X    X   X    X     X    .     X     X
+#  Pspe  .  .  .  .   .    .    .   .    .     X    .     .     .
+#     S  X  X  X  X   X    X    X   X    X     X    .     X     X
+#   S64  X  X  X  X   X    X    X   X    X     X    .     X     X
+# alpha  X  X  X  X   X    X    X   X    X     X    .     X     X
+# amd64  X  X  X  X   X    X    X   X    X     X    .     X     X
+#   arm  X  X  X  X   X    X    X   X    X     X    .     X     X
+# arm64  X  X  X  X   X    X    X   X    X     X    .     X     X
+# armeb  X  X  X  X   X    X    X   X    X     X    .     X     X
+# armel  .  .  .  X   .    .    .   .    .     X    .     .     X
+# armhf  .  .  .  .   .    .    .   .    .     X    .     .     .
+# avr32  X  X  X  X   X    X    X   X    X     X    .     X     X
+#  hppa  X  X  X  X   X    X    X   X    X     X    .     X     X
+#  i386  X  X  X  X   X    X    X   X    X     X    .     X     X
+#  ia64  X  X  X  X   X    X    X   X    X     X    .     X     X
+#  lpia  .  .  .  .   .    .    .   .    .     X    .     .     .
+#  m32r  X  X  X  X   X    X    X   X    X     X    .     X     X
+#  m68k  X  X  X  X   X    X    X   X    X     X    X     X     X
+#  mips  X  X  X  X   X    X    X   X    X     X    .     X     X
+# mipse  X  X  X  X   X    X    X   X    X     X    .     X     X
+# ppc64  X  X  X  X   X    X    X   X    X     X    .     X     X
+#  s390  X  X  X  X   X    X    X   X    X     X    .     X     X
+# s390x  X  X  X  X   X    X    X   X    X     X    .     X     X
+#   sh3  X  X  X  X   X    X    X   X    X     X    .     X     X
+# sh3eb  X  X  X  X   X    X    X   X    X     X    .     X     X
+#   sh4  X  X  X  X   X    X    X   X    X     X    .     X     X
+# sh4eb  X  X  X  X   X    X    X   X    X     X    .     X     X
+#   x32  .  .  .  .   .    .    .   .    .     X    .     .     .
+
+my $Cpus = join '|', 
+  qw| alpha  amd64 arm arm64 armeb  armel armhf avr32 hppa i386 ia64  lpia
+      m32r  m68k mips mipsel powerpc powerpcspe ppc64 s390 s390x sh3 sh3eb
+      sh4           sh4eb            sparc           sparc64           x32 |;
+my $Oses    = join '|',
+  qw| darwin freebsd hurd kfreebsd knetbsd kopensolaris mint netbsd openbsd
+      solaris                     uclibc-linux                      uclinux |;
 my $Extras  = q{all|any|source};
 
 pattern
   name   => [ qw| debian architecture | ],
   create =>
-    q|(?<![a-z])|                          .
-    qq{(?k:(?k:$Extras)|}                  .
-    qq|(?:(?k:$Oses)-)?|                   .
-    q|(?k:|                                .
-      qq{(?<=-)(?:$Arches)|}               .
-      qq{(?<![a-z-])(?:$Arches|$xArches))} .
-    q|)(?![a-z])|;
+    q|(?<![0-9a-z-])|          .
+    qq{(?k:(?k:$Extras)|}      .
+    qq{(?:(?k:$Oses|any)-)?}   .
+    q|(?k:|                    .
+      qq{(?<=-)(?:$Cpus|any)|} .
+      qq{(?<!-)(?:$Cpus))}     .
+    q|)(?![0-9a-z-])|;
 
 =item B<$RE{debian}{archive}{binary}>
 
@@ -364,18 +363,23 @@ pattern
 
 This is Debian binary archive (even if there's no binary file (in B<-B> sense)
 inside it's called "binary" anyway).
-The naming convention isn't described in Debian policy;
-Instead it refers to format understood by B<dpkg> (Preface of S<Chapter 3>).
-B<deb(5)> brings no light either.
-(Hopefully, someday here will be references to code inside B<dpkg> and B<dpkg-deb>
-codebase that does those nasty things with I<package>, I<version>, and I<arch>
-composing in and decomposing out of filenames.)
+When Debian policy and B<deb(5)> talk about "format" it's about internals but
+name.
+If you think about it, then it's clear that neither B<dpkg(1)> nor B<apt(1)>
+nor any other alternative cares what is a B<basename> of particular binary
+archive.
+It turns out that only authority on naming binary archives is what actualy
+creates them.
+Indeed, B<dpkg-deb(1)> clearly states its intentions in very first entry
+I<-b, --build directory [archive|directory]>.
 
 =over
 
-=item I<$1> is I<deb-filename>
+=item I<$1> is I<deb_filename>
 
 That's the whole archive filename with C<.deb> suffix included
+B<(bug)>
+C<.udeb> is suffix too.
 
 =item I<$2> is I<package>
 
@@ -397,11 +401,10 @@ L<"caveat #1: I<version> starts with letter">.
 
 =item I<$4> is I<architecture>
 
-B<(caveat)>
+B<(bug)>
 That would match surprising C<source> or C<any>.
-Sorry.
-That'll improve in future.
 Actually that's even worse:  I<OS> can prepend any I<arch> or I<special>.
+Shortly:  doesn't work with ports.
 
 =back
 
@@ -410,17 +413,19 @@ L<"caveat #2: suffix could be in version">
 
 =cut
 
-# CHECK:20100727140613:whynot: B<debian-policy>, version 3.8.2.0, 3.0
-# CHECK:20100727140738:whynot: L<deb(5)>, version 1.15.2
+# FIXME:201401032248:whynot: Architecture mess should be fixed.
+# CHECK:201401030019:whynot: B<debian-policy>, version 3.9.3.1, 3.0
+# CHECK:201401030019:whynot: L<deb(5)>, version 1.16.10
+# CHECK:201401030020:whynot: L<dpkg-deb(1)>, version 1.16.10
 
 pattern
   name   => [ qw| debian archive binary | ],
   create =>
 # TODO: Should piggyback on B<package>, B<version>, and B<arch>
-    q|(?k:|                                                .
-      q|(?k:[a-z0-9][a-z0-9+.-]+)_|                        .
-      qq|(?k:(?:[0-9]+%3a)?[$Magic-]+)_|                   .
-      qq{(?k:(?:(?:$Oses)-)?(?:$Arches|$xArches|$Extras))} .
+    q|(?k:|                                     .
+      q|(?k:[a-z0-9][a-z0-9+.-]+)_|             .
+      qq|(?k:(?:[0-9]+%3a)?[$Magic-]+)_|        .
+      qq{(?k:(?:(?:$Oses)-)?(?:$Cpus|$Extras))} .
     qq|\\.deb)(?![$Magic-])|;
 
 =item B<$RE{debian}{archive}{source_1_0}>
@@ -524,20 +529,24 @@ And now miserable notes about B<$RE{d}{a}{source_1_0}>:
 
 =over
 
-=item I<$1> is I<tarball-filename>
+=item I<$1> is I<tarball_filename>
 
-Since there's no other suffix, but F<.gz> it's present only in I<$1>
+Since there's no other suffix, but F<.gz> it's present only in
+I<tarball_filename>
 
 =item I<$2> is I<package>
 
 =item I<$3> is I<version>
 
 There's a bit (or pile) of complication.
-Look, if I<$3> contains minus (C<->), that means that resulting binary must
+Look, if I<version> contains minus (C<->), that means that resulting binary
+must
 have I<debian_revision> set (otherwise that minus must not be here), thus
-implying presense of F<*.diff.gz>, thus implying I<$4> must be C<orig.tar> but
+implying presense of F<*.diff.gz>, thus implying I<type> must be C<orig.tar>
+but
 simple C<tar> (what would be Debian native package).
-OTOH, if there is no minus, then I<$4> could be either C<orig.tar> or C<tar>.
+OTOH, if there is no minus, then I<type> could be
+either C<orig.tar> or C<tar>.
 Obviously lack or presence of F<*.diff.gz> falls out of knowledge of
 B<$RE{d}{a}{source_1_0}>.
 
@@ -572,7 +581,7 @@ This can hold one of 2 strings (C<orig.tar> (regular package) or C<tar>
 B<(bug)>
 Probably that should look behind (if that would be that possible) for hyphen
 (C<->) in
-I<$3>.
+I<version>.
 It doesn't.
 Because it's OK to have hyphen in Debian-native packages
 (C<francine_0.99.8orig-6.tar.gz>).
@@ -584,6 +593,7 @@ L<"caveat #2: suffix could be in version">
 
 =cut
 
+# TODO:201401091839:whynot: Please backup your bogus claims.
 # FIXME:20100803184421:whynot: Exclude C<.orig-component.> (variable-length qr/(?<!)/ is needed for this).
 # FIXME:20100731131608:whynot: I<$4> should look behind if that could be C<tar>.
 
@@ -614,7 +624,7 @@ packages (those without F<*.debian.tar.gz>).
 
 =over
 
-=item I<$1> is I<tarball-filename>
+=item I<$1> is I<tarball_filename>
 
 C<tar> with delimiting dots (C<.>) is included only here.
 
@@ -637,7 +647,7 @@ L<"caveat #1: I<version> starts with letter">.
 
 =item I<$4> is I<suffix>
 
-It's either C<gz>, C<bz2>, or C<lzma>.
+It's either C<gz>, C<bz2>, C<lzma>, or C<xz>.
 Anything else (missing counts as anything) would fail the whole pattern.
 
 =back
@@ -650,7 +660,7 @@ L<"caveat #2: suffix could be in version">
 # FIXME:20100803184303:whynot: Exclude C<.orig-component.> (variable-length qr/(?<!)/ is needed for this).
 # FIXME:20100803184706:whynot: Exclude C<.orig.> (useles with left in the previous one).
 # TODO:20100803115330:whynot: Enforce lowercase of I<package>.
-# CHECK:20100803115347:whynot: dpkg-source(5), 1.15.2
+# CHECK:201401032007:whynot: L<dpkg-source(1)>, 1.16.10
 
 pattern
   name   => [ qw| debian archive source_3_0_native | ],
@@ -659,7 +669,7 @@ pattern
       q|(?k:[a-z0-9][a-z0-9+.-]+)_| .
       qq|(?k:[$Magic-]+?)|          .
       q|(?<!\.debian)\.tar|         .
-      q{\.(?k:gz|bz2|lzma)}         .
+      q{\.(?k:gz|bz2|lzma|xz)}      .
     qq|)(?![$Magic-])|;
 
 =item B<$RE{debian}{archive}{source_3_0_quilt}>
@@ -671,7 +681,8 @@ pattern
     print 'decompress with ' .
       $5 eq 'gz'   ? 'gunzip'  :
       $5 eq 'bz2'  ? 'bunzip2' :
-      $5 eq 'lzma' ? 'unlzma'  : die;
+      $5 eq 'lzma' ? 'unlzma'  :
+      $5 eq 'xz'   ? 'unxz'    : die;
 
 C<v0.2.4>
 That's descendant of
@@ -682,12 +693,12 @@ Also C<Format: 3.0 (quilt)> invents a concept of components.
 
 =over
 
-=item I<$1> is I<tarball-filename>
+=item I<$1> is I<tarball_filename>
 
 Delimiting dots (C<.>), C<orig>
 (with or without (if missing) component delimiting hyphen (C<->)),
 and C<tar> are present here only.
-The I<component> itself is present in I<$4>.
+The I<component> itself is present in I<component>.
 
 =item I<$2> is I<package>
 
@@ -699,9 +710,9 @@ L<"caveat #1: I<version> starts with letter">.
 
 =item I<$4> is I<component>
 
-My understanding is that the 'component' is specially packed piece of upstream
+The 'component' is specially packed piece of upstream
 sources (being it packed this way by either upstream or Debian).
-Thus it's not a patch.
+It's not a patch.
 Thus it's here (B<$RE{d}{a}{source_3_0_quilt}> but
 L<B<$RE{d}{a}{patch_3_0_quilt}>|/$RE{debian}{archive}{patch_3_0_quilt}>).
 The component name is either present or missing completely, so this is invalid:
@@ -712,14 +723,14 @@ Although this is perfectly valid:
 
     strange-component-package_98765.orig--.tar.gz
 
-B<dpkg-source(5)> is unclear about this, but my understanding is that component
+B<dpkg-source(1)> is unclear about this, but my understanding is that component
 name is closer to I<package> (thus lowercase only) then I<version> (mixed
 case).
 However that's not yet enforced.
 
 =item I<$5> is I<suffix>
 
-It's either C<gz>, C<bz2>, or C<lzma>.
+It's either C<gz>, C<bz2>, C<lzma>, or C<xz>.
 Anything else (missing counts as anything) would fail the whole pattern.
 
 =back
@@ -730,7 +741,7 @@ L<"caveat #2: suffix could be in version">
 =cut
 
 # TODO:20100802182640:whynot: Enforce lowercase of I<package> and I<component>.
-# CHECK:20100802183230:whynot: dpkg-source(5), 1.15.2
+# CHECK:201401032010:whynot: L<dpkg-source(1)>, 1.16.10
 
 pattern
   name   => [ qw| debian archive source_3_0_quilt | ],
@@ -739,7 +750,7 @@ pattern
       q|(?k:[a-z0-9][a-z0-9+.-]+)_|       .
       qq|(?k:[$Magic-]+?)|                .
       q|\.orig(?:-(?k:[a-z0-9-]+))?\.tar| .
-      q{\.(?k:gz|bz2|lzma)}               .
+      q{\.(?k:gz|bz2|lzma|xz)}            .
     qq|)(?![$Magic-])|;
 
 =item B<$RE{debian}{archive}{patch_1_0}>
@@ -761,9 +772,10 @@ B<$RE{d}{a}{patch}> has been renamed into B<$RE{d}{a}{patch_1_0}>.
 
 =over
 
-=item I<$1> is I<patch-filename>
+=item I<$1> is I<patch_filename>
 
-Since there's no other suffix, but F<.diff.gz> it's present only in I<$1>
+Since there's no other suffix, but F<.diff.gz> it's present only in
+I<patch_filename>.
 
 =item I<$2> is I<package>
 
@@ -786,7 +798,7 @@ L<"caveat #2: suffix could be in version">
 
 =cut
 
-# CHECK:20100804123234:whynot: dpkg-source(1), version 1.15.2
+# CHECK:201401032014:whynot: L<dpkg-source(1)>, version 1.16.10
 
 pattern
   name   => [ qw| debian archive patch_1_0 | ],
@@ -798,16 +810,26 @@ pattern
 
 =item B<$RE{debian}{archive}{patch_3_0_quilt}>
 
+    'abc_0cba-12.debian.tar.lzma' =~ $RE{debian}{archive}{patch_3_0_quilt}{-keep};
+    say "package is $2";
+    -1 == index $3, '-' and die;
+    print "debian revision is ", (split /-/, $3)[-1];
+    print 'decompress with ' .
+      $4 eq 'gz'   ? 'gunzip'      :
+      $4 eq 'bz2'  ? 'bunzip2'     :
+      $4 eq 'lzma' ? die 'stinks!' :
+      $4 eq 'xz'   ? 'unxz'        : die;
+
 Since C<Format: 3.0 (quilt)> has been invented, debianization stuff has changed
 form from one big diff
 (F<*.diff.gz>, L<B<$RE{d}{a}{patch_1_0}>|/$RE{debian}{archive}{patch_1_0}>)
 to debianization stuff (placed in F<debian/>) and set of diffs (if any)
 (intended to be placed in F<debian/patches/>) in form of single
-tar-file (F<*.debian.tar.gz>, mostly (as I can observe) F<*.bz2>).
+tar-file (F<*.debian.tar.gz>).
 
 =over
 
-=item I<$1> is I<tar-filename>
+=item I<$1> is I<tar_filename>
 
 C<debian.tar> with delimiting dots (C<.>) is seen here only.
 
@@ -821,7 +843,7 @@ L<"caveat #1: I<version> starts with letter">.
 
 =item I<$4> is I<suffix>
 
-It's either C<gz>, C<bz2>, or C<lzma>.
+It's either C<gz>, C<bz2>, C<lzma>, or C<xz>.
 Anything else (missing counts as anything) would fail the whole pattern.
 
 =back
@@ -832,7 +854,7 @@ L<"caveat #2: suffix could be in version">
 =cut
 
 # TODO:20100803141628:whynot: Enforce lowercase apropriately.
-# CHECK:20100803141827:whynot: dpkg-source(1), 1.15.2
+# CHECK:201401032058:whynot: L<dpkg-source(1)>, 1.16.10
 
 pattern
   name   => [ qw| debian archive patch_3_0_quilt | ],
@@ -841,7 +863,7 @@ pattern
       q|(?k:[a-z0-9][a-z0-9+.-]+)_| .
       qq|(?k:[$Magic-]+?)|          .
       q|\.debian\.tar|              .
-      q{\.(?k:gz|bz2|lzma)}         .
+      q{\.(?k:gz|bz2|lzma|xz)}      .
     qq|)(?![$Magic-])|;
 
 =item B<$RE{debian}{archive}{dsc}>
@@ -858,9 +880,10 @@ use (creating and parsing)).
 
 =over
 
-=item I<$1> is I<dsc-filename>
+=item I<$1> is I<dsc_filename>
 
-As usual, since the only suffix can be F<.dsc> it's present in I<$1> only.
+As usual, since the only suffix can be F<.dsc> it's present in I<dsc_filename>
+only.
 
 =item I<$2> is I<package>
 
@@ -877,8 +900,8 @@ L<"caveat #2: suffix could be in version">
 
 =cut
 
-# CHECK:20100727143544:whynot: B<debian-policy>, version 3.8.2.0, 5.4
-# CHECK:20100727144551:whynot: L<$RE{d}{a}{source_1_0}> is still valid
+# CHECK:201401032237:whynot: B<debian-policy>, version 3.9.3.1, 5.4
+# CHECK:201401032240:whynot: L<$RE{d}{a}{source_1_0}> is still valid
 
 pattern
   name   => [ qw| debian archive dsc | ],
@@ -901,9 +924,10 @@ So this pattern is based on observation too.
 
 =over
 
-=item I<$1> is I<changes-filename>
+=item I<$1> is I<changes_filename>
 
-As usual, since the only suffix can be F<.changes> it's present in I<$1> only.
+As usual, since the only suffix can be F<.changes> it's present in
+I<changes_filename> only.
 
 =item I<$2> is I<package>
 
@@ -922,16 +946,17 @@ L<"caveat #2: suffix could be in version">
 
 =cut
 
-# CHECK:20100727144934:whynot: B<debian-policy>, 3.8.2.0, 5.5
-# CHECK:20100727150323:whynot: L<$RE{d}{a}{b}> is still valid
+# FIXME:201401032247:whynot: Architecture mess should be fixed.
+# CHECK:201401032244:whynot: B<debian-policy>, 3.9.3.1, 5.5
+# CHECK:201401032247:whynot: L<$RE{d}{a}{b}> is still valid
 
 pattern
   name   => [ qw| debian archive changes | ],
   create =>
-    q|(?k:|                                                .
-      q|(?k:[a-z0-9][a-z0-9+.-]+)_|                        .
-      qq|(?k:[$Magic-]+?)_|                                .
-      qq{(?k:(?:(?:$Oses)-)?(?:$Arches|$xArches|$Extras))} .
+    q|(?k:|                                     .
+      q|(?k:[a-z0-9][a-z0-9+.-]+)_|             .
+      qq|(?k:[$Magic-]+?)_|                     .
+      qq{(?k:(?:(?:$Oses)-)?(?:$Cpus|$Extras))} .
     qq{\\.changes)(?![$Magic-])};
 
 =item B<$RE{debian}{sourceslist}>
@@ -948,6 +973,11 @@ This is one entry in F<sources.list> resource list.
 The format is described in B<sources.list(5)> man page
 (hence a chance for desincronization provided)
 (gosh, it's not B<debian> any more, it's B<APT>).
+
+B<(bug)>
+It just come to my attention, between C<deb> and I<uri> there could be
+I<options>.
+Missing so far.
 
 =over
 
@@ -974,7 +1004,7 @@ Read below...
 Schemes that B<APT> knows have nothing to do with B<sources.list(5)> actually.
 I<scheme> that B<APT> will use is some executable in F</usr/lib/apt/methods>
 (some of them are for transfer, some are not).
-B<sources.list(5)> (of I<0.7.21>) defines these:
+B<sources.list(5)> (of C<0.9.7.8>) defines these:
 
 =over
 
@@ -990,6 +1020,10 @@ C<http>, C<ftp>, C<rsh>, C<ssh>
 
 Delimiting colon C<:> isn't included here
 (although I<uri> does).
+
+B<(bug)>
+It just come to my attention (C<0.9.7.8>) I<scheme> can be anything
+(to some degree).
 
 =item I<$5> is I<hier_path>
 
@@ -1030,35 +1064,27 @@ empty
 
 =back
 
-All that is quite messy.
-Can it be improved?
-Surely yes
-(even if we stay in B<Regexp::Common> requirements)
-(think C<qr/(?|)/>).
-And then we have one more C<v5.10.0> only regexp.
-Someday C<v5.10.0> will be oldstable...
-
 =cut
 
-# CHECK:20100727174634:whynot: L<sources.list(5)>, version 0.7.21
+# CHECK:201401040046:whynot: L<sources.list(5)>, version 0.9.7.8
 
 pattern
-  name   => [ qw| debian sourceslist | ],
-  create =>
+  name    => [qw| debian sourceslist |],
+  version =>                      5.010,
+  create  =>
     q|(?k:| .
-# FIXME: change C<qr/[\011\040]/> to C<qr/\h/> asap.
-      q|(?k:(?<!\w)deb(?:-src)?)[\011\040]+|                              .
-      q|(?k:|                                                             .
-        q{(?k:file|http|ftp|cdrom|copy|rsh|ssh):}                         .
-        q|(?k:[[:graph:]]+))[\011\040]+|                                  .
-      q|(?k:[[:graph:]]+)|                                                .
-      q|(?:[\011\040]+|                                                   .
-      q{(?k:[[:graph:]]+(?=[\011\040]|\z)(?:[\011\040]+[[:graph:]]+)*))*} .
-    q|)|;
+      q|(?k:(?<!\w)deb(?:-src)?)\h+|                      .
+      q|(?k:|                                             .
+        q{(?k:file|http|ftp|cdrom|copy|rsh|ssh):}         .
+        q|(?k:[[:graph:]]+))\h+|                          .
+      q|(?k:[[:graph:]]+)|                                .
+      q|(?:\h+|                                           .
+      q{(?k:[[:graph:]]+(?=\h|\z)(?:\h+[[:graph:]]+)*))*} .
+                                   q|)|;
 
 =item B<$RE{debian}{preferences}>
 
-    <<END_OF_PREFERENCE =~ $RE{debian}{preferences{-keep}} or die;
+    <<END_OF_PREFERENCES =~ $RE{debian}{preferences{-keep}} or die;
     Explanation: Stay updated!
     Package: perl
     Pin: version 5.10*
@@ -1082,11 +1108,16 @@ C<apt-cache policy> behaviour leads from understanding either.
 After some experimenting I've found that:
 In general this is Debian control file format.
 With some quirks provided.
-Mine problem isn't how to implement that with REs:
-mine problem is what those quirks are!
-Either I figuring out the format, or releasing.
-(You've released once, so what?)
 So here we are -- some common case of entry in F<preferences>.
+
+B<(bug)>
+C<v0.2.12>
+Somewhere on the span C<lenny>/C<squeeze>/C<wheezy> treating F<preferences>
+has changed so much that B<$RE{d}{p}> needs total rework.
+Now there're:  globs, POSIX extended re, star has explict meaning, and
+probably more (reading changelog leaves very unhappy feeling).
+So, whatever is said hereafter, describes what this re is doing but what
+F<preferences> might look like.
 
 Shortly:
 
@@ -1136,8 +1167,9 @@ That's the whole entry -- with all leading and trailing spaces, and an Easter
 Eggs.
 B<apt_preferences(5)> invents something called I<Explanation:> stanzas
 (they should go before I<Package:>, with no empty lines in between).  
-Since we are aware of that, I<Explanation:> sequence is provided in I<$1>
-(and it won't be ever I<$2>
+Since we are aware of that, I<Explanation:> sequence is provided in
+I<preferences_entry>
+(and it won't be ever I<package_stanza>
 (1st, obvious compatibility reasons;
 2nd, it's somewhat legalized since it's mentioned;
 3rd, it can be easily dropped in case I found that useful)).
@@ -1170,20 +1202,21 @@ Bad news below.
 
 =item I<$4> is a I<context_filter>
 
-B<(bug)>  (what else?)  What would be a correct input here depends on I<$3>.
+B<(bug)>  (what else?)  What would be a correct input here depends on
+I<context_switch>.
 B<$RE{d}{preferences}> takes anything up to the next newline.
 
 =item I<$5> is a I<pin_priority_stanza>
 
-In I<$5> will be a sequence of decimal numbers
+In I<pin_priority_stanza> will be a sequence of decimal numbers
 (yes, hexadecimals are rejected and octals aren't converted),
 optionally prepended with C<+> (plus) or C<-> (minus) signs up to surprising
 C<.> (dot).
 Any trailing decimals and dots (after the first one) will be ignored by
 C<apt-cache policy>.
 So does the B<$RE{d}{preferences}> too.
-The optional dot-decimal trailer will be missing in I<$5>, but present in
-I<$1>.
+The optional dot-decimal trailer will be missing in I<pin_priority_stanza>,
+but present in I<prererences_entry>.
 
 =back
 
@@ -1192,28 +1225,30 @@ Go figure.
 
 =cut
 
+# FIXME:201401062348:whynot: Please verify your bogus claims.
 # TODO:20100804123053:whynot: Please verify your bogus claims.
 # CHECK:20100727194229:whynot: L<apt_preferences(5)>, version 0.7.21
 
 pattern
-  name   => [ qw| debian preferences | ],
-  create =>
-    q|(?k:(?ism)(?:^Explanation:[^\n]*\n)*|                  .
+  name    => [qw| debian preferences |],
+  version =>                      5.010,
+  create  =>
+    q|(?k:(?ism)(?:^Explanation:[^\n]*\n)*|         .
 # TODO: Match multiline values.
-      q|^Package:[\011\040]*|                                .
-        q{(?k:\*|}                                           .
+      q|^Package:\h*|                               .
+        q{(?k:\*|}                                  .
 # FIXME: Should canibalize B<$RE{debian}{package}>
-        q{(?-i:[a-z0-9+.-]+(?:[\011\040]+[a-z0-9+.-]+)*))}   .
-      q|+[\011\040]*\n|                                      .
-      q|Pin:[\011\040]*|                                     .
-        q{(?k:version|origin|release)[\011\040]+}            .
+        q{(?-i:[a-z0-9+.-]+(?:\h+[a-z0-9+.-]+)*)+)} .
+      q|\h*\n|                                      .
+      q|Pin:\h*|                                    .
+        q{(?k:version|origin|release)\h+}           .
 # TODO: Should check I<$3> and then be more strict with I<$4>
-        q{(?k:[^\n\011\040]+(?:[\011\040]+[^\n\011\040]+)*)} .
-      q|[\011\040]*\n|                                       .
-      q|Pin-Priority:[\011\040]*|                            .
-        q|(?k:[-+]?\d+)(?:[.\d]+)?|                          .
-      q{[\011\040]*\n(?=\n|\z)}                              .
-    q|)|;
+        q{(?k:[^\n\h]+(?:\h+[^\n\h]+)*)}            .
+      q|\h*\n|                                      .
+      q|Pin-Priority:\h*|                           .
+        q|(?k:[-+]?\d+)(?:[.\d]+)?|                 .
+      q{\h*\n(?=\n|\z)}                             .
+                                   q|)|;
 
 =item B<$RE{debian}{changelog}>
 
@@ -1251,6 +1286,8 @@ Until Debian Policy C<v3.8.1.0> there was an option of providing
 F<debian/changelog> in different format.
 However [489460@bugs.debian.org] had made it.
 Now that option has gone.
+However, B<dpkg-parsechangelog(1)> describes how those are introduced and
+handled.
 
 =over
 
@@ -1282,7 +1319,7 @@ B<(caveat)>
 C<v0.2.3>
 L<"caveat #1: I<version> starts with letter">.
 
-=item I<$4> is a I<distributions>
+=item I<$4> is I<distributions>
 
 C<v0.2.8>
 That's space (C<S< >>) separated sequence of letters (C<S<a .. z>>)
@@ -1290,7 +1327,7 @@ That's space (C<S< >>) separated sequence of letters (C<S<a .. z>>)
 (C<->) in any order,
 except first character should be letter (weird).
 Space before terminating semicolon is disallowed
-(it's not missing in I<$4>, it fails entry).
+(it's not missing in I<distributions>, it fails entry).
 Terminating semicolon isn't included.
 
 =item I<$5> is I<keys> (or I<urgency>, if you like)
@@ -1300,7 +1337,7 @@ comma (C<,>) separated list of equal (C<=>) separated key-value pairs.
 However the only known I<key> is C<urgency>.
 Maybe I'm too pesimistic,
 but despite the fact that the only I<key> allowed is C<urgency> the whole
-I<key>=I<value> pair is put in I<$5> --
+I<key>=I<value> pair is put in I<keys> --
 so you've better be prepared and pick a I<key> you're looking for
 (one day you can get a lot more).
 
@@ -1322,8 +1359,8 @@ C<0.2.8>
 Log entry of C<binutils_2.7-5> invents concept of something.
 Let's call it comment (or wish).
 Thus anything that's not comma-separated equal-separated key-value pair is
-skipped (from I<$5>).
-Obviously, it's present in I<$1>
+skipped (from I<keys>).
+Obviously, it's present in I<changelog_entry>
 
 =item I<$6> is I<changes>
 
@@ -1331,7 +1368,7 @@ That invents concept of empty line.
 
 C<v0.2.8>
 For B<$RE{d}{changelog}> "empty line" consists of any number horizontal spaces
-(space (C<S< >>) and tab (C<"\t">))
+(C<qr/\h/>)
 followed by newline.
 OTOH, "line" is at least two spaces (one tab counts as at least two spaces)
 then any non-space character, and anything up to
@@ -1341,12 +1378,12 @@ No or one space followed by non-space fails entirely
 (but watch for trailing signature line).
 As requested by Debian Policy (or stock parser) leading and trailing empty
 lines are ignored
-(they are included in I<$1> though).
+(they are included in I<changelog_entry> though).
 
 B<(bug)>
 Handling trailing empty lines is broken.
 It's useles to describe what empty lines and what number of empty lines will
-end up in I<$6>.
+end up in I<changes>.
 B<$RE{d}{changelog}> must be redone.
 
 B<(caveat)>
@@ -1368,11 +1405,12 @@ B<$RE{d}{changelog}> doesn't insist on that.
 
 B<$RE{d}{changelog}> is very permissive about what is I<maintainer_name>
 (and what it is actually?).
-I<$8> and I<$9> take care of themselves.
+I<email_address> and I<changelog_date> take care of themselves.
 A leading space-then-double-hyphen and separating space aren't included.
 
 C<v0.2.10>
-Any number of space (but null) could be between double-hyphen and I<$7>
+Any number of space (but null) could be between double-hyphen and
+I<maintainer_name>
 (C<libnet-daemon-perl_0.30-1>).
 
 =item I<$8> is an I<email_address>
@@ -1393,14 +1431,20 @@ Neither leading double-space nor trailing newline are included.
 C<v0.2.9>
 B<debian-policy> invents an option of 'time zone name or abbreaviation
 optionally present as a comment in parentheses'.
-Such comment would be included in I<$1> but missing in I<$9>.
+Such comment would be included in I<changelog_entry> but missing in
+I<changelog_date>.
 Moreover, if that comment would fall on the next line it will be ignored.
 All that parody will suffer rewrite in next turn.
 
+B<(bug)>
+C<v0.2.12>
+B<debian-policy> C<v3.9.0.0> states what "date" is.
+As usual.
+
 B<(caveat)>
 There could be spaces after last number.
-They aren't included in I<$9>.
-And yes, they are present in I<$1> though.
+They aren't included in I<changelog_date>.
+And yes, they are present in I<changelog_entry> though.
 
 =back
 
@@ -1409,12 +1453,13 @@ Pity on me.
 =cut
 
 # FIXME:20100808192152:whynot: C<qr/\G/>
-# CHECK:20100728122826:whynot: B<debian-policy>, version 3.8.2.0, 4.4
-# CHECK:20100728122848:whynot: L<dpkg-parsechangelog(1)>, 1.15.2
+# CHECK:201401062351:whynot: B<debian-policy>, version 3.9.3.1, 4.4
+# CHECK:201401070017:whynot: L<dpkg-parsechangelog(1)>, 1.16.10
 
 pattern
-  name   => [ qw| debian changelog | ],
-  create =>
+  name    => [qw| debian changelog |],
+  version =>                    5.010,
+  create  =>
 # FIXME: Should canibalize B<$RE{d}{package}> and B<$RE{d}{version}>
     q|(?k:(?sm)^|                                                          .
       q|(?k:[a-z0-9+.-]+)\040|                                             .
@@ -1426,22 +1471,23 @@ pattern
       q|(?k:(?:|                                                           .
         q(^\040{2}[^\n]+\n|)                                               .
         q(^\040?\011[^\n]+\n|)                                             .
-        q{^[\040\011]*\n(?!\040--)}                                        .
-      q|)+)(?:[\040\011]*\n)*|                                             .
+        q{^\h*\n(?!\040--)}                                                .
+      q|)+)(?:\h*\n)*|                                                     .
       q|\040--\040+|                                                       .
 # FIXME: Should use B<Regexp::Common::Email::Address>
         q|(?k:[^\040\n][^\n]+)(?<!\040)\040|                               .
         q|<(?k:[^\s]+)>\040\040|                                           .
-# FIXME: Should use B<Regexp::Common::Time>
+# FIXME:201401072142:whynot: Should use B<Regexp::Common::time>.  Or not.
+# FIXME:201401062354:whynot: B<debian-policy> has put description what "date" is.
         q|(?k:(?<=>\040\040)[A-Z][A-Za-z0-9\040,:+-]+[0-9])|               .
-        q{(?=[\040\011]*(?:\n|\050))}                                      .
-    q|[\040\011]*(?:\([A-Z]+\))*\n)|;
+        q{(?=\h*(?:\n|\050))}                                              .
+             q|\h*(?:\([A-Z]+\))*\n)|;
 
 =back
 
 =head1 BUGS AND CAVEATS
 
-Grep this pod for C<(bug)> and/or C<(caveat)>.
+Grep this pod for B<(bug)> and/or B<(caveat)>.
 They all are placed in appropriate sections.
 
 However two caveats affect multiple patterns.
@@ -1462,7 +1508,7 @@ Or does it?
 
 Or mine reading of debian-policy has been a bit vague.
 Now I see it clearly states: C<should start with a digit>.
-C<should> isn't C<must>.
+I<should> isn't I<must>.
 So from now on: version can start with any...
 For B<$RE{debian}{version}> it starts with any version forming character except
 colon (C<:>) or hyphen (C<->) (that will be fixed in next turn).
@@ -1486,7 +1532,7 @@ However, none such versions has been found so far.
 
 =item bug #1: no C<pos()>
 
-When working on test-booster for B<$RE{d}{changelog}> I've discovered avful
+When working on test-booster for B<$RE{d}{changelog}> I've discovered awful
 thing.
 C<qr/\G$RE{debian}{changelog}{-keep}/sg> fails.
 Subsequent C<pos()> returns C<undef>.
@@ -1495,15 +1541,21 @@ Probably all other patterns are affected too.
 I can't say what's a cause.
 That will be investigated and hopefully fixed in next turn.
 
+=item note #1: pathetic documentattion
+
+I should admit that at time of writing I was high on changelogs, preferences,
+and so on.
+Not to say that I was totally tripping on versions.
+
 =back
 
 =head1 AUTHOR
 
-Eric Pozharski, E<lt>whynot@cpan.orgZ<>E<gt>
+Eric Pozharski, <whynot@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008--2010 by Eric Pozharski
+Copyright 2008--2010, 2014 by Eric Pozharski
 
 This library is free in sense: AS-IS, NO-WARANRTY, HOPE-TO-BE-USEFUL.
 This library is released under LGPLv3.
@@ -1511,13 +1563,14 @@ This library is released under LGPLv3.
 =head1 SEE ALSO
 
 L<Regexp::Common>,
-L<http:E<sol>E<sol>www.debian.orgZ<>E<sol>docZ<>E<sol>debian-policy>,
+L<http://www.debian.org/doc/debian-policy>,
 dpkg-architecture(1),
 deb(5),
 dpkg-source(1),
 sources.list(5),
 apt_preferences(5),
 dpkg-parsechangelog(1),
+dpkg-deb(1),
 
 =cut
 

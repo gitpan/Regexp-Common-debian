@@ -8,6 +8,18 @@ match_architecture:
     - ~
     - ~
   -
+    - all-arm64
+    - '-'
+  -
+    - armeb-all
+    - '-'
+  -
+    - all-freebsd
+    - '-'
+  -
+    - hurd-all
+    - '-'
+  -
     - source
     - +
     - source
@@ -15,12 +27,75 @@ match_architecture:
     - ~
     - ~
   -
+    - source-armel
+    - '-'
+  -
+    - armhf-source
+    - '-'
+  -
+    - source-kfreebsd
+    - '-'
+  -
+    - knetbsd-source
+    - '-'
+  -
     - any
     - +
     - any
     - any
     - ~
     - ~
+  -
+    - any-avr32
+    - +
+    - any-avr32
+    - ~
+    - any
+    - avr32
+  -
+    - hppa-any
+    - '-'
+  -
+    - any-kopensolaris
+    - '-'
+  -
+    - mint-any
+    - +
+    - mint-any
+    - ~
+    - mint
+    - any
+  -
+    - all-all
+    - '-'
+  -
+    - all-any
+    - '-'
+  -
+    - all-source
+    - '-'
+  -
+    - any-all
+    - '-'
+  -
+    - any-any
+    - +
+    - any-any
+    - ~
+    - any
+    - any
+  -
+    - any-source
+    - '-'
+  -
+    - source-all
+    - '-'
+  -
+    - source-any
+    - '-'
+  -
+    - source-source
+    - '-'
   -
     - amd64
     - +
@@ -35,6 +110,15 @@ match_architecture:
     - ~
     - hurd
     - hppa
+  -
+    - i386-ia64
+    - '-'
+  -
+    - netbsd-openbsd
+    - '-'
+  -
+    - lpia-solaris
+    - '-'
   -
     - ''
     - '-'
@@ -62,35 +146,7 @@ match_architecture:
     - ~
     - ~
   -
-    - all-lpia
-    - '-'
-    - all
-    - all
-    - ~
-    - ~
-  -
-    - any-kfreebsd
-    - '-'
-    - any
-    - any
-    - ~
-    - ~
-  -
     - source-kopensolaris-sparc
-    - '-'
-    - source
-    - source
-    - ~
-    - ~
-  -
-    - knetbsd-all
-    - '-'
-    - all
-    - all
-    - ~
-    - ~
-  -
-    - hurd-armel
     - '-'
   -
     - darwins390x
@@ -98,21 +154,15 @@ match_architecture:
   -
     - -darwin-s390x
     - '-'
-    - darwin-s390x
-    - ~
-    - darwin
-    - s390x
   -
     - darwin--s390x
     - '-'
-    - s390x
-    - ~
-    - ~
-    - s390x
   -
     - darwin-s390x-
     - '-'
-    - darwin-s390x
-    - ~
-    - darwin
-    - s390x
+  -
+    - freebsd-sh3e
+    - '-'
+  -
+    - fhurd-sh3eb
+    - '-'

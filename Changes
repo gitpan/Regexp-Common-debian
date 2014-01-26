@@ -1,3 +1,38 @@
+  v0.2.12 20140117
+
+      ~ $RE{debian}{architecture} (+26 -4 ~3 =42)
+          Lame attempt to be RL-correct has been removed -- any *os* and
+          *cpu* will fit; "any" can take over *os* and/or *cpu*.  Lists
+          of *os*es and *cpu*s have been updated.
+
+      ~ $RE{debian}{archive}{changes} (=41)
+          New *os* and *cpu* lists have been canibalized.  Using
+          "v5.10.0" features and requiring it.
+
+      ~ $RE{debian}{archive}{source_3_0_native} (+3 =66)
+      ~ $RE{debian}{archive}{source_3_0_quilt} (+1 =111)
+      ~ $RE{debian}{archive}{patch_3_0_quilt} (+1 =72)
+          "xz" suffix has been added.
+
+      ~ $RE{debian}{archive}{binary} (=59)
+          New *os* and *cpu* lists have been canibalized.
+
+      ~ $RE{debian}{preferences} (+4 =74)
+      ~ $RE{debian}{changelog} (=145)
+      ~ $RE{debian}{sourceslist} (=26)
+          Using "v5.10.0" features and requiring it.
+
+      - workaround for perl pre v5.10.0 for $RE{d}{version} (-45 =0)
+          Workaround has been retired.
+
+      % Test-suite support testing live-data from various sources
+          Filtering duplicates.  Adding some work-arounds about RL.
+
+      % Documentation fixes
+      = XXX scores 7
+      = TODO scores 16
+      = FIXME scores 17
+
   v0.2.11 20100808
 
       ~ $RE{debian}{version} (=45)

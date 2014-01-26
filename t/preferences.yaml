@@ -177,6 +177,18 @@ match_preferences:
     - 0
     - 1
   -
+    - "Package: /foo/\nPin: version 0\nPin-Priority: 1\n"
+    - '-'
+  -
+    - "Package: *foo\nPin: version 0\nPin-Priority: 1\n"
+    - '-'
+  -
+    - "Package: foo*\nPin: version 0\nPin-Priority: 1\n"
+    - '-'
+  -
+    - "Package: foo * bar\nPin: version 0\nPin-Priority: 1\n"
+    - '-'
+  -
     - "Package:*\nPin: version 0\nPin-Priority: 1\n"
     - +
     - "Package:*\nPin: version 0\nPin-Priority: 1\n"

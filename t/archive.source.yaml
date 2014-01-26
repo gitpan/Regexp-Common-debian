@@ -458,6 +458,13 @@ match_source_3_0_native:
     - ab
     - 0
     - lzma
+  -
+    - ab_0.tar.xz
+    - +
+    - ab_0.tar.xz
+    - ab
+    - 0
+    - xz
   - 
     - ab_0.tar.gzfoo
     - '-'
@@ -522,6 +529,20 @@ match_source_3_0_native:
     - ab_0-lzma.tar.gz
     - ab
     - 0-lzma
+    - gz
+  -
+    - ab_0.xz.tar.gz
+    - +
+    - ab_0.xz.tar.gz
+    - ab
+    - 0.xz
+    - gz
+  -
+    - ab_0-xz.tar.gz
+    - +
+    - ab_0-xz.tar.gz
+    - ab
+    - 0-xz
     - gz
   - 
     - ab_0.tar.gz.tar.gz
@@ -751,6 +772,14 @@ match_source_3_0_quilt:
     - 0
     - ~
     - lzma
+  -
+    - ab_0.orig.tar.xz
+    - +
+    - ab_0.orig.tar.xz
+    - ab
+    - 0
+    - ~
+    - xz
   -
     - orig_0.orig.tar.gz
     - +
@@ -1676,6 +1705,13 @@ match_patch_3_0_quilt:
     - a0
     - 0
     - lzma
+  -
+    - a0_0.debian.tar.xz
+    - +
+    - a0_0.debian.tar.xz
+    - a0
+    - 0
+    - xz
   - 
     - a0_a.debian.tar.gz
     - +
