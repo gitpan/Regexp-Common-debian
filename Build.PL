@@ -1,11 +1,11 @@
 #!/usr/bin/perl
-# $Id: Build.PL 489 2014-01-16 22:50:27Z whynot $
+# $Id: Build.PL 493 2014-02-05 19:00:07Z whynot $
 
-package main;
 use strict;
 use warnings;
+package main;
 
-use version 0.50; our $VERSION = qv q|0.2.13|;
+use version 0.50; our $VERSION = qv q|0.2.14|;
 
 use Module::Build 0.38;
 
@@ -52,6 +52,8 @@ Accidentally it's B<YAML::Tiny> (unspecified version).
 C<v0.2.1>
 Reading reports of cpantesters I've got to conclusion that B<YAML::Tiny> isn't
 popular.
+(C<v0.2.13>
+Wandering through errors of C<v0.2.12> I should say it totally is.)
 And avoiding installing (or unability to install (there could be reasons))
 build requirements isn't that uncommon.
 Although I experience a strong belief that some YAML reader happens to be
@@ -75,6 +77,41 @@ different YAML readers treat source differently.
 So I attempt to keep F<t/*.yaml> files semantically equal and sintactically
 correct.
 Hopefully there're no differences among versions in wild.
+
+C<v0.2.13>
+(Actually, this feature has been here for years.)
+Any supported YAML reader can be enforced with C<$ENV{RCD_YAML_ENGINE}> magic
+(in spite of any build-time choice):
+
+    RCD_YAML_ENGINE=syck ./Build test
+
+Readers are assigned by nicks.
+Here they are:
+
+=over
+
+=item *
+
+C<syck> -- B<YAML::Syck>.
+
+=item *
+
+C<xs> -- B<YAML::XS>.
+
+=item *
+
+C<tiny> -- B<YAML::Tiny>.
+
+=item *
+
+C<old> -- B<YAML>.
+
+=item *
+
+C<data> -- B<Data::YAML::Reader> 'does not support multi-line quoted scalars',
+'YAML document header not found' -- unsupported, so far.
+
+=back
 
 C<v0.2.2>
 Various (all, except F<t/preferences.t> and F<t/sourceslist.t>)
@@ -267,6 +304,7 @@ my $engine = Module::Build->new(
   { q|File::Temp|        =>   '',
     q|Test::Differences| => 0.60,
     q|Test::More|        =>   ''                               },
+  dynamic_config         =>                                    1,
   configure_requires => {             q|Module::Build| => 0.38 },
   PL_files           =>
   { ( -f q|README.PL|  ? ( q|README.PL|  =>  q|README| ) : ()),

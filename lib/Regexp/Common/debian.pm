@@ -1,4 +1,4 @@
-# $Id: debian.pm 489 2014-01-16 22:50:27Z whynot $
+# $Id: debian.pm 492 2014-02-05 18:01:59Z whynot $
 # Copyright 2008--2010, 2014 Eric Pozharski <whynot@pozharski.name>
 # GNU LGPLv3
 # AS-IS, NO-WARRANTY, HOPE-TO-BE-USEFUL
@@ -7,7 +7,7 @@ use strict;
 use warnings;
 package Regexp::Common::debian;
 
-use version 0.50; our $VERSION = qv q|0.2.12|;
+use version 0.50; our $VERSION = qv q|0.2.13|;
 
 =head1 NAME
 

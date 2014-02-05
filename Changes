@@ -1,3 +1,13 @@
+  v0.2.13 20140205
+
+      % TS' data-sets made readable by all supported YAML readers
+          Breakage has been here for years.
+
+      % Adding YAML::XS reader
+      % Data::YAML left unsupported
+      % Adding *dynamic_config* to Build.PL
+          Breakage has been here for years.
+
   v0.2.12 20140117
 
       ~ $RE{debian}{architecture} (+26 -4 ~3 =42)

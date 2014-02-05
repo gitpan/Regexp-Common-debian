@@ -278,7 +278,7 @@ match_binary:
     - a0_0a:_all.deb
     - '-'
   -
-    - %3Da_1_all.deb
+    - '%3Da_1_all.deb'
     - '-'
   -
     - a0_%3D_all.deb

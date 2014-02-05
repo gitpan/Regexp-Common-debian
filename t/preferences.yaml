@@ -104,7 +104,7 @@ match_preferences:
     - 0
     - 1
   -
-    - "Package: !@#\$\nPin: version 0\nPin-Priority: 1\n"
+    - "Package: !@#$\nPin: version 0\nPin-Priority: 1\n"
     - '-'
   -
     - "Package: abcdefghijklmnopqrstuvwxyz\nPin: version 0\nPin-Priority: 1\n"

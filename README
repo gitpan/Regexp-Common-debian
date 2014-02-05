@@ -31,23 +31,43 @@
     Accidentally it's YAML::Tiny (unspecified version).
 
     ``v0.2.1'' Reading reports of cpantesters I've got to conclusion that
-    YAML::Tiny isn't popular.  And avoiding installing (or unability to
-    install (there could be reasons)) build requirements isn't that
-    uncommon.  Although I experience a strong belief that some YAML reader
-    happens to be installed anyway.  And still I can't find a way to specify
-    that *%build_requires* one of but all known to me YAML reader.  So here
-    is a dirty trick.  t::TestSuite attempts to require() one of known (to
-    me, see below) YAML reader.  Then (upon initial ``perl Build.PL'')
-    t::TestSuite is asked what it has found (if nothing then cosmetic
-    ``Compilation failed in require'' message will be seen).  And one what
-    has been found will be added to *%build_requires*; If nothing then fair
-    YAML::Tiny will be added.  (I think it's fair because YAML::Tiny is
-    pure-Perl, small footprint, and no dependencies.)
+    YAML::Tiny isn't popular.  (``v0.2.13'' Wandering through errors of
+    ``v0.2.12'' I should say it totally is.) And avoiding installing (or
+    unability to install (there could be reasons)) build requirements isn't
+    that uncommon.  Although I experience a strong belief that some YAML
+    reader happens to be installed anyway.  And still I can't find a way to
+    specify that *%build_requires* one of but all known to me YAML reader. 
+    So here is a dirty trick.  t::TestSuite attempts to require() one of
+    known (to me, see below) YAML reader.  Then (upon initial ``perl
+    Build.PL'') t::TestSuite is asked what it has found (if nothing then
+    cosmetic ``Compilation failed in require'' message will be seen).  And
+    one what has been found will be added to *%build_requires*; If nothing
+    then fair YAML::Tiny will be added.  (I think it's fair because
+    YAML::Tiny is pure-Perl, small footprint, and no dependencies.)
 
     (note) I'm talking about "known to me YAML readers" because I've found
     out that different YAML readers treat source differently.  So I attempt
     to keep t/*.yaml files semantically equal and sintactically correct. 
     Hopefully there're no differences among versions in wild.
+
+    ``v0.2.13'' (Actually, this feature has been here for years.) Any
+    supported YAML reader can be enforced with $ENV{RCD_YAML_ENGINE} magic
+    (in spite of any build-time choice):
+
+        RCD_YAML_ENGINE=syck ./Build test
+
+    Readers are assigned by nicks.  Here they are:
+
+:   *   ``syck'' -- YAML::Syck.
+
+:   *   ``xs'' -- YAML::XS.
+
+:   *   ``tiny'' -- YAML::Tiny.
+
+:   *   ``old'' -- YAML.
+
+:   *   ``data'' -- Data::YAML::Reader 'does not support multi-line quoted
+        scalars', 'YAML document header not found' -- unsupported, so far.
 
     ``v0.2.2'' Various (all, except t/preferences.t and t/sourceslist.t)
     test-units know a magic command '$ENV{RCD_ASK_DEBIAN}'.  Apply it this

@@ -19,11 +19,11 @@ name: Regexp-Common-debian
 provides:
   Regexp::Common::debian:
     file: lib/Regexp/Common/debian.pm
-    version: v0.2.12
+    version: v0.2.13
 requires:
   Regexp::Common: 0
   perl: v5.10.0
   version: 0.5
 resources:
   license: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
-version: v0.2.12
+version: v0.2.13
