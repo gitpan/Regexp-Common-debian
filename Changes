@@ -1,4 +1,8 @@
-  v0.2.13 20140205
+      % Moving into refactoring (RE of deban package).
+      % Fixing README and Changes idiocy.
+      % Fixing *license* handling.
+
+      v0.2.13 20140205
 
       % TS' data-sets made readable by all supported YAML readers
           Breakage has been here for years.
@@ -8,7 +12,7 @@
       % Adding *dynamic_config* to Build.PL
           Breakage has been here for years.
 
-  v0.2.12 20140117
+      v0.2.12 20140117
 
       ~ $RE{debian}{architecture} (+26 -4 ~3 =42)
           Lame attempt to be RL-correct has been removed -- any *os* and
@@ -43,7 +47,7 @@
       = TODO scores 16
       = FIXME scores 17
 
-  v0.2.11 20100808
+      v0.2.11 20100808
 
       ~ $RE{debian}{version} (=45)
           Support for versions with no leading number.
@@ -86,12 +90,12 @@
       = TODO scores 12
       = FIXME scores 13
 
-  v0.1.5 20090311
+      v0.1.5 20090311
 
       ~ $RE{debian}{changelog} (+34 =115)
       % Documentation fixes.
 
-  v0.1.4 20090209
+      v0.1.4 20090209
 
       + $RE{debian}{sourceslist} (30)
       + $RE{debian}{preferences} (74)
@@ -100,7 +104,7 @@
       % Documentation upgraded.
       % Various changes and updates to satisfy CPAN.
 
-  v0.0.11 20090103
+      v0.0.11 20090103
 
       % $RE{debian}{archive}{changes} was hardly broken.
           Copy-paste issue, fixed.
@@ -111,7 +115,7 @@
       % Cosmetic documentation updates-n-fixes.
       ~ $RE{debian}{archive}{changes} (-16 =34)
 
-  v0.0.10 20081231
+      v0.0.10 20081231
 
       + $RE{debian}{package} (69)
       + $RE{debian}{version} (45)
@@ -125,4 +129,16 @@
       = XXX scores 8
       = TODO scores 5
       = FIXME scores 8
+
+POD ERRORS
+
+  Hey! The above document had some coding errors, which are explained
+  below:
+
+  Around line 3:
+      You can't have =items (as at line 19) unless the first thing after
+      the =over is an =item
+
+  Around line 5:
+      Unknown directive: =itev
 

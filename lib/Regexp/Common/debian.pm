@@ -1,4 +1,4 @@
-# $Id: debian.pm 492 2014-02-05 18:01:59Z whynot $
+# $Id: debian.pm 508 2014-07-05 20:11:01Z whynot $
 # Copyright 2008--2010, 2014 Eric Pozharski <whynot@pozharski.name>
 # GNU LGPLv3
 # AS-IS, NO-WARRANTY, HOPE-TO-BE-USEFUL
@@ -7,7 +7,7 @@ use strict;
 use warnings;
 package Regexp::Common::debian;
 
-use version 0.50; our $VERSION = qv q|0.2.13|;
+use version 0.77; our $VERSION = version->declare( v0.2.14 );
 
 =head1 NAME
 
@@ -105,9 +105,10 @@ Rules are described in S<Section 5.6.7> of Debian policy.
 # CHECK:201312301705:whynot: B<debian-policy>, version 3.9.3.1, 5.6.1 5.6.7
 # CHECK:201312301842:whynot: B<Dpkg::Package>, version 1.16.10, 0.01
 
+my $pMagic = q|[a-z0-9][a-z0-9+.-]+|;
 pattern
   name   => [ qw| debian package | ],
-  create => q|(?k:[a-z0-9][a-z0-9+.-]+)|;
+  create =>         qq|(?k:$pMagic)|;
 
 =item B<$RE{debian}{version}>
 
@@ -423,7 +424,7 @@ pattern
   create =>
 # TODO: Should piggyback on B<package>, B<version>, and B<arch>
     q|(?k:|                                     .
-      q|(?k:[a-z0-9][a-z0-9+.-]+)_|             .
+      qq|(?k:$pMagic)_|                         .
       qq|(?k:(?:[0-9]+%3a)?[$Magic-]+)_|        .
       qq{(?k:(?:(?:$Oses)-)?(?:$Cpus|$Extras))} .
     qq|\\.deb)(?![$Magic-])|;
@@ -601,7 +602,7 @@ pattern
   name   => [ qw| debian archive source_1_0 | ],
   create =>
     q|(?k:|                                   .
-      q|(?k:[a-z0-9][a-z0-9+.-]+)_|           .
+      qq|(?k:$pMagic)_|                       .
 # XXX: Yes, must be ungreedy
       qq|(?k:[$Magic-]+?)|                    .
       q|\.(?k:(?:orig\.)?(?<!\.debian\.)tar)| .
@@ -666,7 +667,7 @@ pattern
   name   => [ qw| debian archive source_3_0_native | ],
   create =>
     q|(?k:|                         .
-      q|(?k:[a-z0-9][a-z0-9+.-]+)_| .
+      qq|(?k:$pMagic)_|             .
       qq|(?k:[$Magic-]+?)|          .
       q|(?<!\.debian)\.tar|         .
       q{\.(?k:gz|bz2|lzma|xz)}      .
@@ -747,7 +748,7 @@ pattern
   name   => [ qw| debian archive source_3_0_quilt | ],
   create =>
     q|(?k:|                               .
-      q|(?k:[a-z0-9][a-z0-9+.-]+)_|       .
+      qq|(?k:$pMagic)_|                   .
       qq|(?k:[$Magic-]+?)|                .
       q|\.orig(?:-(?k:[a-z0-9-]+))?\.tar| .
       q{\.(?k:gz|bz2|lzma|xz)}            .
@@ -804,7 +805,7 @@ pattern
   name   => [ qw| debian archive patch_1_0 | ],
   create =>
     q|(?k:|                         .
-      q|(?k:[a-z0-9][a-z0-9+.-]+)_| .
+      qq|(?k:$pMagic)_|             .
       qq|(?k:[$Magic-]+?)|          .
     qq{\\.diff\\.gz)(?![$Magic-])};
 
@@ -860,7 +861,7 @@ pattern
   name   => [ qw| debian archive patch_3_0_quilt | ],
   create =>
     q|(?k:|                         .
-      q|(?k:[a-z0-9][a-z0-9+.-]+)_| .
+      qq|(?k:$pMagic)_|             .
       qq|(?k:[$Magic-]+?)|          .
       q|\.debian\.tar|              .
       q{\.(?k:gz|bz2|lzma|xz)}      .
@@ -907,7 +908,7 @@ pattern
   name   => [ qw| debian archive dsc | ],
   create =>
     q|(?k:|                         .
-      q|(?k:[a-z0-9][a-z0-9+.-]+)_| .
+      qq|(?k:$pMagic)_|             .
       qq|(?k:[$Magic-]+?)|          .
     qq{\\.dsc)(?![$Magic-])};
 
@@ -954,7 +955,7 @@ pattern
   name   => [ qw| debian archive changes | ],
   create =>
     q|(?k:|                                     .
-      q|(?k:[a-z0-9][a-z0-9+.-]+)_|             .
+      qq|(?k:$pMagic)_|                         .
       qq|(?k:[$Magic-]+?)_|                     .
       qq{(?k:(?:(?:$Oses)-)?(?:$Cpus|$Extras))} .
     qq{\\.changes)(?![$Magic-])};
@@ -1238,7 +1239,7 @@ pattern
       q|^Package:\h*|                               .
         q{(?k:\*|}                                  .
 # FIXME: Should canibalize B<$RE{debian}{package}>
-        q{(?-i:[a-z0-9+.-]+(?:\h+[a-z0-9+.-]+)*)+)} .
+        qq{(?-i:$pMagic(?:\\h+$pMagic)*)+)}         .
       q|\h*\n|                                      .
       q|Pin:\h*|                                    .
         q{(?k:version|origin|release)\h+}           .
@@ -1462,7 +1463,7 @@ pattern
   create  =>
 # FIXME: Should canibalize B<$RE{d}{package}> and B<$RE{d}{version}>
     q|(?k:(?sm)^|                                                          .
-      q|(?k:[a-z0-9+.-]+)\040|                                             .
+      qq|(?k:$pMagic)\040|                                                 .
       qq|\\((?k:[$Magic:-]+)\\)\\040|                                      .
       q{(?k:(?i)(?:[a-z][a-z\040-]*))(?<!\040);\040}                       .
       q|(?k:[a-z]+=[A-Za-z]+(?:,[a-z]+=[A-Z-a-z]+)*)(?:(?!\n)[^\n]+)*\n+|  .

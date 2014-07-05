@@ -62,16 +62,7 @@ match_changelog:
     - Thu, 01 Apr 2010 00:00:00 +0300
   -
     - "-.+ (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - +
-    - "-.+ (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
-    - -.+
-    - 6.0.0-1
-    - unstable
-    - urgency=high
-    - "  * At last.\n"
-    - John Doe
-    - doe@example.tld
-    - Thu, 01 Apr 2010 00:00:00 +0300
+    - '-'
   -
     - "perl  (6.0.0-1) unstable; urgency=high\n  * At last.\n -- John Doe <doe@example.tld>  Thu, 01 Apr 2010 00:00:00 +0300\n"
     - '-'

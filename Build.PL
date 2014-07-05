@@ -1,11 +1,11 @@
 #!/usr/bin/perl
-# $Id: Build.PL 493 2014-02-05 19:00:07Z whynot $
+# $Id: Build.PL 508 2014-07-05 20:11:01Z whynot $
 
 use strict;
 use warnings;
 package main;
 
-use version 0.50; our $VERSION = qv q|0.2.14|;
+use version 0.77; our $VERSION = version->declare( v0.2.15 );
 
 use Module::Build 0.38;
 
@@ -33,6 +33,8 @@ It's time to move, C<v5.10.0> is six year old and three years no-support;
 C<lenny> is four year old and a year no-support;
 
 =back
+
+=cut
 
 =head1 INSTALL
 
@@ -199,8 +201,11 @@ Only those changelogs will be checked that C<m/^a/>.
 C<v0.2.9>
 That will check all changelogs, although it will look no more than requested
 number of entries deep.
-(C<v0.2.9>: ~15min for ~1200 changelogs;
-C<v0.2.12>: ~30min for ~1300 changelogs and ~6000 subchecks.)
+
+     v0.2.9 ~15min ~1.2K changelogs
+    v0.2.12 ~30min ~1.3K changelogs ~6.0K subchecks;
+    v0.2.13 ~35min ~1.3K changelogs ~6.1K subchecks;
+
 And that has a perfect sense.
 Do you know that C<cron> once changed it's name to C<Cron>
 (beware leading block) (cron_3.0pl1-46)?
@@ -218,8 +223,10 @@ B<$RE{d}{changelog}> finds out more entries than B<dpkg-parsechangelog>
 (C<dpkg_1.2.13> vs C<dpkg_0.93.79>),
 but if the offending record is more than that far from top then it's reported
 and otherwise ignored.
-(C<v0.2.9>: ~3h for ~1200 packages, ~45000 successful subchecks;
-C<v0.2.12>: ~5¼h for ~1300 changelogs, ~63000 successful subchecks.)
+
+     v0.2.9  ~3h ~1.2K changelogs ~45K subchecks
+    v0.2.12 ~5¼h ~1.3K changelogs ~63K subchecks
+    v0.2.13 ~5½h ~1.3K changelogs ~59K subckecks
 
 =item I<changelog=_5>
 
@@ -294,25 +301,21 @@ B<[38320@rt.cpan.org]> and B<[41241@rt.cpan.org]>.
 my $engine = Module::Build->new(
   module_name        =>                q|Regexp::Common::debian|,
   dist_author        =>      q|Eric Pozharski <whynot@cpan.org>|,
-  license            =>                                  q|lgpl|,
+  license              =>                         q|open_source|,
+  meta_merge           => { resources =>
+  { license =>    q|http://www.gnu.org/licenses/lgpl-3.0.txt| }},
   sign               =>                                        1,
   requires           =>
-  { q|perl|   =>  q|5.10.0|,
-    q|version|    =>   0.50,
-    q|Regexp::Common| => ''                                    },
+  { q|perl|           => qv( v5.10.0 ),
+    q|version|        =>   qv( v0.77 ),
+    q|Regexp::Common| =>            ''                         },
   build_requires     =>
-  { q|File::Temp|        =>   '',
-    q|Test::Differences| => 0.60,
-    q|Test::More|        =>   ''                               },
+  { q|File::Temp|        =>          '',
+    q|Test::Differences| => qv( v0.60 ),
+    q|Test::More|        =>          ''                        },
   dynamic_config         =>                                    1,
   configure_requires => {             q|Module::Build| => 0.38 },
-  PL_files           =>
-  { ( -f q|README.PL|  ? ( q|README.PL|  =>  q|README| ) : ()),
-    ( -f q|Changes.PL| ? ( q|Changes.PL| => q|Changes| ) : ()) },
-  add_to_cleanup     =>
-  [ qw|              *.tmp *.bak skip_* |,
-    ( -f q|README.PL|  ? q|README|  : ()),
-    ( -f q|Changes.PL| ? q|Changes| : ())                      ] );
+  add_to_cleanup     => [ qw|              *.tmp *.bak skip_* |] );
 
 my $y_choice = qx|perl -Mt::TestSuite -we 't::TestSuite::RCD_show_y_choice'|;
 chomp $y_choice;
